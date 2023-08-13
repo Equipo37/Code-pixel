@@ -4,7 +4,7 @@
   "private": true,
   "config": {},
   "engines": { 
-    "node": "14.x"
+    "node": "18.x"
   },
   "scripts": {
     "prod": "node ./bin/www",
