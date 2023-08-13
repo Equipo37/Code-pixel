@@ -174,7 +174,7 @@
         .dProductos {
             width: 1520px;
             height: 600;
-            background-color: burlywood;
+            /* background-color: burlywood; */
             display: flex;
             align-items: center;
             .dProducto {
