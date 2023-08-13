@@ -1,0 +1,18 @@
+{
+  "builds": [
+    {
+      "src": "./back/bin/www",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+        "src": "^/back/(.*)",
+        "dest": "/back/$1"
+    },
+    {
+        "src": "/(.*)",
+        "dest": "/"
+    }
+  ]
+}
