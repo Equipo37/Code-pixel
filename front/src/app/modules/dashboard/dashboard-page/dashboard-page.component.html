@@ -37,7 +37,7 @@
         </div>
 
         <div class="dMiCuenta">
-            <a href="" class="aMiCuenta">
+            <a href="login" class="aMiCuenta">
                 <img src="../../../../assets/img/miCuenta.svg" class="iMicuenta">
                 <p class="pMiCuenta">Mi Cuenta</p>
             </a>
@@ -56,11 +56,11 @@
 
     <div class="dProductosDestacados">
         <div class="dProductos">
-            <div class="dProducto">
+            <div class="dProducto" *ngFor="let producto of productos">
                 <a href="" class="aProducto">
-                    <img src="../../../../assets/img/productos/sillon3.svg" alt="">
+                    <img src="{{producto.imgUrl}}" alt="">
                     <div class="dNombProd">
-                        <h2 class="hNombreProd">SILLON MIMBRE FLOR</h2>
+                        <h2 class="hNombreProd">{{producto.nombre}}</h2>
                     </div>
                 </a>
             </div>

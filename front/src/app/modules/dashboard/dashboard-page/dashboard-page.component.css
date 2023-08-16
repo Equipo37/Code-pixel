@@ -177,6 +177,7 @@
             /* background-color: burlywood; */
             display: flex;
             align-items: center;
+            justify-content: space-between;
             .dProducto {
                 width: 330px;
                 height: auto;
@@ -188,7 +189,8 @@
                         justify-content: center;
                         .hNombreProd {
                             margin: 0px;
-                            width: auto;padding-top: 10px;
+                            width: auto;
+                            padding-top: 10px;
                         }
                     }
                 }
