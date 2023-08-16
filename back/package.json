@@ -7,8 +7,8 @@
     "node": "18.x"
   },
   "scripts": {
-    "prod": "node ./bin/www",
-    "start": "node ./bin/www",
+    "prod": "node ./index.js",
+    "start": "node ./index.js",
     "clean": "rimraf ./node_modules",
     "lint-staged": "npx lint-staged",
     "live": "nodemon server.js",
@@ -37,7 +37,9 @@
     "passport-local": "^1.0.0",
     "sequelize": "^6.29.0",
     "sequelize-cli": "^6.6.0",
-    "vercel": "^31.2.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1",
     "winston-transport": "^4.5.0",
@@ -48,13 +50,6 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.27.5",
     "nodemon": "^2.0.21"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": [
-        "lint-staged"
-      ]
-    }
   },
   "lint-staged": {
     "*.js": [

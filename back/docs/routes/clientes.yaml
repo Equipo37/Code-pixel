@@ -1,0 +1,246 @@
+tags:
+  - name: Clientes
+    description: API para manejar solicitudes de clientes
+
+paths:
+  /clientes:
+    get:
+      summary: Consultar lista de clientes
+      tags:
+        - Clientes
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Lista de clientes encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Cliente"
+    post:
+      summary: Crear un nuevo cliente
+      tags:
+        - Clientes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dni:
+                  type: string
+                  example: "12345678"
+                personahumana:
+                  type: boolean
+                  example: true
+                nombre:
+                  type: string
+                  example: "Juan Pérez"
+                email:
+                  type: string
+                  format: email
+                  example: "juan@example.com"
+                celular:
+                  type: string
+                  example: "123456789"
+                empresa:
+                  type: string
+                  example: "Empresa XYZ"
+                password:
+                  type: string
+                  example: "secretpassword"
+      responses:
+        "201":
+          description: Cliente creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Cliente creado exitosamente"
+                  cliente:
+                    $ref: "#/components/schemas/Cliente"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  cliente:
+                    $ref: "#/components/schemas/Cliente"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  cliente:
+                    $ref: "#/components/schemas/Cliente"
+        "409":
+          description: El ID ya existe en la base de datos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "El ID ya existe en la base de datos"
+                  cliente:
+                    $ref: "#/components/schemas/Cliente"
+        "500":
+          description: Error al crear el cliente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al crear el cliente"
+    put:
+      summary: Editar un cliente existente
+      tags:
+        - Clientes
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cliente" # Referencia al esquema Cliente
+      responses:
+        "200":
+          description: Cliente editado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Cliente editado exitosamente"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  cliente:
+                    $ref: "#/components/schemas/Cliente"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  cliente:
+                    $ref: "#/components/schemas/Cliente"
+        "500":
+          description: Error al editar el cliente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al editar el cliente"
+  /clientes/{dni}:
+    get:
+      summary: Obtener un cliente por DNI
+      tags:
+        - Clientes
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: dni
+          in: path
+          required: true
+          schema:
+            type: string
+          description: DNI del cliente a obtener
+      responses:
+        "200":
+          description: Cliente obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cliente"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  cliente:
+                    $ref: "#/components/schemas/Cliente"
+        "404":
+          description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Cliente no encontrado"
+
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        cli_dni:
+          type: string
+          example: "12345678"
+        cli_personahumana:
+          type: boolean
+          example: true
+        cli_nombre:
+          type: string
+          example: "Juan Pérez"
+        cli_email:
+          type: string
+          format: email
+          example: "juan@example.com"
+        cli_celular:
+          type: string
+          example: "123456789"
+        cli_empresa:
+          type: string
+          example: "Empresa XYZ"
+        cli_password:
+          type: string
+          example: "secretpassword"
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
