@@ -51,7 +51,8 @@ export class RegisterComponent {
 
     console.log(requestData);
 
-    const URL = 'http://localhost:4001/clientes/';
+    // const URL = 'http://localhost:4001/clientes/';
+    const URL = 'https://code-pixel-back.onrender.com/clientes/';
 
     this.http.post(URL, requestData, { responseType: 'text' }).subscribe(
       (response) => {
