@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,17 @@ export class RegisterComponent {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private sanitizer: DomSanitizer
+  ) {}
+
+  getBackgroundImageUrl(): SafeStyle {
+    const imageUrl = '../../assets/img/fondoHomePage.jpg';
+    const backgroundImageStyle = `url(${imageUrl})`;
+    return this.sanitizer.bypassSecurityTrustStyle(backgroundImageStyle);
+  }
 
   onSubmit() {
     if (this.password !== this.confirmPassword) {
