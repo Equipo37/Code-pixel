@@ -26,28 +26,27 @@
     max-width: 800px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 40px;
     align-items: center;
     justify-content: center;
     background-color: rgba(54, 101, 54, 0.848);
     border-radius: 20px;
-    padding: 20px;
-    margin-top: 2vh;
+    margin: auto;
+    padding: 6vh;
 }
 
 .registerContainer .form-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border-radius: 20px;
-    padding: 6px 10px;
+    padding: 6px 15px;
 }
 
 .registerContainer .form-row label {
     transition: all 0.3s;
     pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
+    color: rgba(250, 232, 199, 0.94);
+    margin-right: 1vh;
 }
 
 .registerContainer .form-row input {
@@ -59,12 +58,12 @@
 }
 
 .registerContainer button.submit-button {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     background-color: rgba(250, 232, 199, 0.94);
     color: #818080;
     border: none;
     border-radius: 20px;
-    padding: 7px 10px;
+    padding: 6px 10px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -74,26 +73,16 @@
     color: rgba(250, 232, 199, 0.94);
 }
 
-/*   
-.registerContainer form input {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 20px; 
-  background-color: rgba(250, 232, 199, 0.94); 
-}
-.registerContainer button {
-  margin-top: 20px;
-  background-color: rgba(250, 232, 199, 0.94);
-  color: #818080;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-.registerContainer button:hover {
-  background-color: rgba(76, 175, 76, 0.848);
-  color:  rgba(250, 232, 199, 0.94)
-} */
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .registerContainer form {
+      grid-template-columns: 1fr; 
+      gap: 20px;
+      padding: 4vh;
+  }
+
+  .registerContainer .form-row {
+      flex-direction: column;
+  }
+}

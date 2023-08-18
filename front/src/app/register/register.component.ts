@@ -41,11 +41,11 @@ export class RegisterComponent {
 
     const requestData = {
       dni: this.dni,
-      personahumana: this.personahumana,
+      personahumana: this.personahumana || false,
       nombre: nombreCompleto,
       email: this.email,
       celular: this.celular,
-      empresa: this.empresa,
+      empresa: this.empresa || '',
       password: this.password,
     };
 
@@ -53,13 +53,32 @@ export class RegisterComponent {
 
     const URL = 'http://localhost:4001/clientes/';
 
-    this.http.post(URL, requestData).subscribe(
+    this.http.post(URL, requestData, { responseType: 'text' }).subscribe(
       (response) => {
-        console.log('Registro exitoso', response);
-        this.router.navigate(['/dashboard']);
+        try {
+          const responseData = JSON.parse(response);
+          console.log('Registro exitoso', responseData);
+          alert('Cliente creado con éxito');
+          this.router.navigate(['/dashboard']);
+        } catch (jsonError) {
+          console.log('Respuesta:', response);
+          alert('Cliente creado con éxito');
+          this.router.navigate(['/dashboard']);
+        }
       },
       (error) => {
-        console.error('Error en el registro', error);
+        if (error.status === 400) {
+          try {
+            const errorMessage = JSON.parse(error.error).message;
+            alert(errorMessage);
+          } catch (jsonError) {
+            console.error('Error en el registro', error);
+            alert('Error en el registro');
+          }
+        } else {
+          console.error('Error en el registro', error);
+          alert('Error en el registro');
+        }
       }
     );
   }
