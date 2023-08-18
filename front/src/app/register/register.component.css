@@ -1,9 +1,10 @@
 html {
   font-size: 16px;
 }
+
 .error-message {
   color: red;
-  font-size: 0.75rem; 
+  font-size: 0.75rem;
 }
 
 .background-image {
@@ -16,24 +17,32 @@ html {
 }
 
 .registerContainer {
-    z-index: 1;
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Times New Roman', serif;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+  height: 50vh;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Times New Roman', serif;
+  margin: auto;
 }
+
+h2 {
+  color: rgba(250, 232, 199, 0.94);
+
+}
+
 .registerContainer form {
   width: 100%;
   max-width: 50rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem; 
+  gap: 2.5rem;
   align-items: center;
   justify-content: center;
   background-color: rgba(54, 101, 54, 0.848);
-  border-radius: 2rem; 
+  border-radius: 2rem;
   margin: auto;
   padding: 6vh;
 }
@@ -49,13 +58,13 @@ html {
   transition: all 0.3s;
   pointer-events: none;
   color: rgba(250, 232, 199, 0.94);
-  margin-right: 1.875rem; 
+  margin-right: 1.875rem;
 }
 
 .registerContainer .form-row input {
-  margin-bottom: 0.25rem; 
-  border-radius: 2rem; 
-  padding: 0.375rem 0.625rem; 
+  margin-bottom: 0.25rem;
+  border-radius: 2rem;
+  padding: 0.375rem 0.625rem;
   border: none;
   background-color: rgba(250, 232, 199, 0.94);
 }
@@ -65,7 +74,7 @@ html {
   color: #818080;
   border: none;
   border-radius: 2rem;
-  padding: 0.375rem 0.625rem; 
+  padding: 0.375rem 0.625rem;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -77,17 +86,18 @@ html {
 
 /* Media queries for responsive design */
 @media (max-width: 48rem) {
-  .registerContainer  {
-  margin: 1rem;
-}
-.registerContainer form {
-    grid-template-columns: 1fr; 
-    gap: 1.25rem; 
-    padding: 3rem 1.8rem; 
-}
+  .registerContainer {
+    margin: 1rem;
+  }
 
-.registerContainer .form-row {
+  .registerContainer form {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 3rem 1.8rem;
+  }
+
+  .registerContainer .form-row {
     flex-direction: column;
-    padding: 0.375rem 0.9375rem; 
-}
+    padding: 0.375rem 0.9375rem;
+  }
 }
