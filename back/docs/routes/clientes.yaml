@@ -211,7 +211,47 @@ paths:
                   message:
                     type: string
                     example: "Cliente no encontrado"
-
+  /clientes/login:
+    post:
+      summary: inicio de sesión del cliente
+      tags:
+        - Clientes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "juan@example.com"
+                password:
+                  type: string
+                  example: "secretpassword"
+      responses:
+        "200":
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    description: Token de acceso para el cliente autenticado
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        "404":
+          description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Cliente no encontrado"
 components:
   schemas:
     Cliente:

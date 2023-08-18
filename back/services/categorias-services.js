@@ -5,7 +5,6 @@ async function getAll() {
     const categorias = await db.Categoria.findAll();
     return categorias;
   } catch (error) {
-    console.log(error);
     throw new Error('Error al obtener las categorias');
   }
 }

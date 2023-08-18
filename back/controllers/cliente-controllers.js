@@ -3,7 +3,11 @@ const clienteServices = require('../services/clientes-services');
 async function getAllClientes(req, res) {
   try {
     const clientes = await clienteServices.getAll();
-    res.status(200).send(clientes);
+    if (clientes.length < 1) {
+      res.status(404).json({error: "Cliente no encontrado"})
+    } else {
+      res.status(200).send(clientes);
+    }
   } catch (error) {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
@@ -49,15 +53,21 @@ async function signUpCliente(req, res) {
 
 async function getByDniCliente(req, res) {
   const { dni } = req.params;
-  try {
-    const response = await clienteServices.getByDni(dni);
-    if (response == "Cliente no encontrado") {
-      res.status(404).json({ error: 'Cliente no encontrado' });
+  if (dni.length !== 8 ) {
+    res.status(400).json({error: "el DNI debe contener 8 caracteres numéricos"})
+  } else {
+    try {
+      const response = await clienteServices.getByDni(dni);
+      if (response == "Cliente no encontrado") {
+        res.status(404).json({ error: 'Cliente no encontrado' });
+        return
+      }
+      res.status(200).send(response);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
     }
-    res.status(200).send(response);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
   }
+  
 }
 
 async function editCliente(req, res) {

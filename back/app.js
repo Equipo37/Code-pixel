@@ -57,15 +57,18 @@ app.use(helmet.ieNoOpen());
 const whitelist = process.env.CORS.split(' ');
 
 const corsOptions = {
-  origin(origin, callback) {
+  origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
-      logger.api.error('Not allowed by CORS', { origin });
       callback(new Error('Not allowed by CORS'));
     }
   },
+  methods: ['GET', 'POST'], // Agregar otros métodos si son necesarios
+  allowedHeaders: ['Content-Type', 'Authorization'], // Agregar otros encabezados necesarios
+  credentials: true, // Permite enviar cookies y encabezados de autenticación
 };
+
 app.use(cors(corsOptions));
 
 if (config.environment === 'production') {

@@ -10,21 +10,22 @@ async function getAll() {
 }
 
 async function singUp(dni, personahumana, nombre, email, celular, empresa, password) {
+    try {
+      const cliente = new db.Cliente();
+      cliente.cli_dni = dni;
+      cliente.cli_personahumana = personahumana;
+      cliente.cli_nombre = nombre;
+      cliente.cli_email = email;
+      cliente.cli_celular = celular;
+      cliente.cli_empresa = empresa;
+      cliente.cli_password = password
+      const clienteCreated = await cliente.save();
+      return "cliente creado con éxito";
+    } catch (error) {
+      throw new Error('Error al crear el cliente');
+    }
+
   
-  try {
-    const cliente = new db.Cliente();
-    cliente.cli_dni = dni;
-    cliente.cli_personahumana = personahumana;
-    cliente.cli_nombre = nombre;
-    cliente.cli_email = email;
-    cliente.cli_celular = celular;
-    cliente.cli_empresa = empresa;
-    cliente.cli_password = password
-    const clienteCreated = await cliente.save();
-    return "cliente creado con éxito";
-  } catch (error) {
-    throw new Error('Error al crear el cliente');
-  }
 }
 
 async function login (email, password) {
