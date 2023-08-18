@@ -17,7 +17,7 @@
         
         .dLogoInst {
             display: flex;
-            height: 20px;
+            height: 1.25rem;
             align-items: center;
             .aInstLogo {
                 height: 1.25rem;
@@ -148,16 +148,16 @@
 }
 
 .dNuestrosProductos {
-    height: 1080px;
+    height: 67.5rem;
     background-color: rgba(255, 225, 195, 0.4);
 
     .dNuestros {
         display: flex;
-        padding-top: 60px;
+        padding-top: 3.75rem;
         justify-content: center;
 
         .hNuestros {
-            margin: 0px;
+            margin: 0rem;
             font-size: 3rem;
             font-weight: 400;
             font-style: italic;
@@ -167,19 +167,19 @@
 
     .dProductosDestacados {
         display: flex;
-        margin: 0px;
-        height: 600px;
+        margin: 0rem;
+        height: 37.5rem;
         justify-content: center;
-        padding-top: 80px;
+        padding-top: 5rem;
         .dProductos {
-            width: 1520px;
+            width: 95rem;
             height: 600;
             /* background-color: burlywood; */
             display: flex;
             align-items: center;
             justify-content: space-between;
             .dProducto {
-                width: 330px;
+                width: 20.6rem;
                 height: auto;
                 .aProducto {
                     text-decoration: none;
@@ -188,7 +188,7 @@
                         display: flex;
                         justify-content: center;
                         .hNombreProd {
-                            margin: 0px;
+                            margin: 0rem;
                             width: auto;
                             padding-top: 10px;
                         }
