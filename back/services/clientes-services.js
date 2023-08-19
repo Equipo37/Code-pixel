@@ -77,6 +77,7 @@ async function edit(dni, personahumana, nombre, email, celular, empresa, passwor
 async function deleteCliente(dni) {
   const cliente = await getByDni(dni);
   await cliente.destroy();
+  return "Cliente eliminado con éxito"
 }
 
 module.exports = {

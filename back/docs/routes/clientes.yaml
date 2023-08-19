@@ -200,6 +200,32 @@ paths:
                   message:
                     type: string
                     example: "Error al editar el cliente"
+    delete:
+      summary: Eliminar un cliente
+      tags:
+        - Clientes
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: dni
+          in: path
+          required: true
+          schema:
+            type: string
+          description: DNI del cliente a eliminar
+      responses:
+        "204":
+          description: Cliente eliminado exitosamente
+        "404":
+          description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Cliente no encontrado"
   /clientes/login:
     post:
       summary: inicio de sesión del cliente
