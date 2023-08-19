@@ -1,5 +1,6 @@
 const db = require('../models');
 const jwt = require('jsonwebtoken');
+
 async function getAll() {
   try {
     const clientes = await db.Cliente.findAll();
@@ -9,7 +10,7 @@ async function getAll() {
   }
 }
 
-async function singUp(dni, personahumana, nombre, email, celular, empresa, password) {
+async function singUp(dni, personahumana, nombre, email, celular, empresa, password, admin) {
     try {
       const cliente = new db.Cliente();
       cliente.cli_dni = dni;
@@ -19,6 +20,7 @@ async function singUp(dni, personahumana, nombre, email, celular, empresa, passw
       cliente.cli_celular = celular;
       cliente.cli_empresa = empresa;
       cliente.cli_password = password
+      cliente.cli_admin = admin
       const clienteCreated = await cliente.save();
       return "cliente creado con éxito";
     } catch (error) {

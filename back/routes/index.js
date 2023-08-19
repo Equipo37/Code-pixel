@@ -14,7 +14,7 @@ const serviciosyproductosRoutes = require('./serviciosyproductos-routes');
 // use
 app.use('/clientes', clienteRoutes);
 app.use('/categorias', categoriaRoutes);
-app.use('/serviciosyproductos', serviciosyproductosRoutes);
+app.use('/syp', serviciosyproductosRoutes);
 app.use('/', rootPath.handler);
 app.use(rootPath.setHeaders);
 app.use(errors.handler);

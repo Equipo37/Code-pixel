@@ -1,0 +1,251 @@
+tags:
+  - name: Servicios y Productos
+    description: API para manejar solicitudes de servicios y productos
+
+paths:
+  /syp:
+    get:
+      summary: Consultar lista de servicios y productos
+      tags:
+        - Servicios y Productos
+      responses:
+        "200":
+          description: Lista de servicios y productos encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ServicioProducto"
+      description: >
+        Esta ruta permite obtener una lista de todos los servicios y productos disponibles.
+    post:
+      summary: Agregar un nuevo servicio o producto
+      tags:
+        - Servicios y Productos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServicioProductoInput"
+      responses:
+        "201":
+          description: Servicio o producto creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Servicio o producto creado exitosamente"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  cliente:
+                    $ref: "#/components/schemas/ServicioProductoInput"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  cliente:
+                    $ref: "#/components/schemas/ServicioProductoInput"
+        "400_invalid_categoriaid":
+          description: El id de categoria debe ir entre 0 y 4
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "El id de categoria debe ir entre 0 y 4"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error interno del servidor"
+  /syp/categoria/{categoriaId}:
+    get:
+      summary: Obtener servicios y productos por ID de categoría
+      tags:
+        - Servicios y Productos
+      parameters:
+        - name: categoriaId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la categoría para filtrar los servicios y productos
+      responses:
+        "200":
+          description: Lista de servicios y productos filtrados por categoría
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ServicioProducto"
+
+  /syp/{id}:
+    get:
+      summary: Obtener un servicio o producto por ID
+      tags:
+        - Servicios y Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Id del servicio o producto a obtener
+      responses:
+        "200":
+          description: Servicio o producto obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServicioProducto"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  cliente:
+                    $ref: "#/components/schemas/ServicioProducto"
+        "404":
+          description: Servicio o producto no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Servicio o producto no encontrado"
+    put:
+      summary: Editar un servicio o producto existente
+      tags:
+        - Servicios y Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Id del servicio o producto a obtener
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServicioProductoInput"
+      responses:
+        "200":
+          description: Servicio o producto editado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Servicio o producto editado exitosamente"
+        "400":
+          description: Error en la solicitud
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error en la solicitud"
+        "404":
+          description: Servicio o producto no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Servicio o producto no encontrado"
+    delete:
+      summary: Eliminar un servicio o producto
+      tags:
+        - Servicios y Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID del servicio o producto a eliminar
+      responses:
+        "204":
+          description: Servicio o producto eliminado exitosamente
+        "404":
+          description: Servicio o producto no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Servicio o producto no encontrado"
+
+components:
+  schemas:
+    ServicioProducto:
+      type: object
+      properties:
+        id:
+          type: bigint
+          example: 123
+        syp_nombre:
+          type: string
+          example: "Servicio Ejemplo"
+        syp_categoriaId:
+          type: bigint
+          example: 1
+        syp_url:
+          type: string
+          example: "https://ejemplo.com"
+    ServicioProductoInput:
+      type: object
+      properties:
+        nombre:
+          type: string
+          example: "Nuevo Servicio"
+        categoriaId:
+          type: bigint
+          example: 2
+        url:
+          type: string
+          example: "https://nuevo-ejemplo.com"
