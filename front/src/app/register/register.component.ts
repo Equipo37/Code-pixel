@@ -14,8 +14,8 @@ export class RegisterComponent {
   dni: string = '';
   email: string = '';
   celular: string = '';
-  personahumana: boolean = false;
-  empresa: string = '';
+  personahumana: boolean = true;
+  empresa: string = 'N/A';
   password: string = '';
   confirmPassword: string = '';
 
@@ -41,7 +41,7 @@ export class RegisterComponent {
 
     const requestData = {
       dni: this.dni,
-      personahumana: this.personahumana || false,
+      personahumana: this.personahumana || true,
       nombre: nombreCompleto,
       email: this.email,
       celular: this.celular,
