@@ -14,8 +14,8 @@ export class RegisterComponent {
   dni: string = '';
   email: string = '';
   celular: string = '';
-  personahumana: boolean = true;
-  empresa: string = 'N/A';
+  personahumana: boolean = false;
+  empresa: string = '';
   password: string = '';
   confirmPassword: string = '';
 
@@ -41,7 +41,7 @@ export class RegisterComponent {
 
     const requestData = {
       dni: this.dni,
-      personahumana: this.personahumana || true,
+      personahumana: this.personahumana || false,
       nombre: nombreCompleto,
       email: this.email,
       celular: this.celular,
@@ -51,8 +51,8 @@ export class RegisterComponent {
 
     console.log(requestData);
 
-    const URL = 'http://localhost:4001/clientes/';
-    // const URL = 'https://code-pixel-back.onrender.com/clientes/';
+    // const URL = 'http://localhost:4001/clientes/';
+    const URL = 'https://code-pixel-back.onrender.com/clientes/';
 
     this.http.post(URL, requestData, { responseType: 'text' }).subscribe(
       (response) => {
