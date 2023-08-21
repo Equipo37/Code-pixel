@@ -1,6 +1,5 @@
 const db = require('../models');
 const jwt = require('jsonwebtoken');
-const { NotFound } = require('../exceptions/cliente-exceptions');
 async function getAll() {
   try {
     const clientes = await db.Cliente.findAll();
@@ -11,6 +10,7 @@ async function getAll() {
 }
 
 async function singUp(dni, personahumana, nombre, email, celular, empresa, password) {
+  
   try {
     const cliente = new db.Cliente();
     cliente.cli_dni = dni;
@@ -21,7 +21,7 @@ async function singUp(dni, personahumana, nombre, email, celular, empresa, passw
     cliente.cli_empresa = empresa;
     cliente.cli_password = password
     const clienteCreated = await cliente.save();
-    return clienteCreated;
+    return "cliente creado con éxito";
   } catch (error) {
     throw new Error('Error al crear el cliente');
   }
@@ -47,8 +47,8 @@ async function getByDni(dni) {
   try {
     const cliente = await db.Cliente.findByPk(dni);
     if (!cliente) {
-      throw new NotFound('Cliente no encontrado');
-    }
+      return "Cliente no encontrado"
+    } 
     return cliente;
   } catch (error) {
     throw new Error('Error al obtener el cliente');
