@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,10 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
-}
-username: string = '';
-password: string = '';
+  username: string = '';
+  password: string = '';
+
+  constructor(private router: Router) {}
 
   onSubmit() {
     // Aquí puedes implementar la lógica de autenticación
@@ -19,3 +21,8 @@ password: string = '';
       console.log('Inicio de sesión fallido');
     }
   }
+
+  redirectToRegister() {
+    this.router.navigate(['/register']);
+  }
+}
