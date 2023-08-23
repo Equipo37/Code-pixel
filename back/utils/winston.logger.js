@@ -2,8 +2,11 @@ const winston = require('winston');
 require('winston-daily-rotate-file');
 const moment = require('moment');
 
+// Utiliza una ubicación que sea permitida para escritura en Vercel (p. ej. /tmp)
+const logsDirectory = '/tmp';
+
 const transportApi = new (winston.transports.DailyRotateFile)({
-  filename: `${__dirname}/../logs/${process.env.APP}-%DATE%.log`,
+  filename: `${logsDirectory}/${process.env.APP}-%DATE%.log`,
   datePattern: 'YYYY-MM-DD',
   zippedArchive: true,
   maxSize: '10m',
@@ -16,7 +19,6 @@ const appendTimestamp = winston.format(
 module.exports = {
   api: winston.createLogger(
     {
-      // info, debug, error
       level: process.env.LOG_LEVEL,
       format: winston.format.combine(
         winston.format.splat(),
@@ -27,9 +29,7 @@ module.exports = {
       ),
       transports: [
         transportApi,
-        new winston.transports.Console(
-          {},
-        ),
+        new winston.transports.Console(),
       ],
     },
   ),

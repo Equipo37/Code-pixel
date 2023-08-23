@@ -1,10 +1,12 @@
 const Sequelize = require('sequelize');
+const mysql2 = require('mysql2');
 const logger = require('../../utils/winston.logger');
 
 const sequelizeOptions = {
   logging: (msg) => logger.api.debug(`Database: ${process.env.DB_DATABASE} - ${msg}`),
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
+  dialectModule: mysql2,
   dialect: 'mysql',
   operatorsAliases: '0',
   timezone: '-03:00',
