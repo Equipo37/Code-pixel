@@ -1,14 +1,14 @@
-<p>Hola!</p>
-<h2>Bienvenido</h2>
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label>Usuario:</label>
-    <input type="text" [(ngModel)]="username" name="username" />
-  </div>
-  <div>
-    <label>Contraseña:</label>
-    <input type="password" [(ngModel)]="password" name="password" />
-  </div>
-  <button type="submit">Iniciar Sesión</button>
-  <button type="submit">Registrate</button>
-</form>
+<div class="login-container">
+    <form class="login-form" (ngSubmit)="onSubmit()">
+        <h2>Bienvenido</h2>
+        <div>
+            <input type="text" [(ngModel)]="username" name="username" placeholder="Usuario"/>
+        </div>
+        <div>
+            <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña"/>
+        </div>
+        <button type="submit">Iniciar Sesión</button>
+        <br>
+        <button type="button" (click)="mostrarRegistro()">Registrate</button>
+    </form>
+</div>
