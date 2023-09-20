@@ -12,6 +12,9 @@ module.exports = {
       syp_nombre: {
         type: Sequelize.STRING
       },
+      syp_url: {
+        type: Sequelize.STRING
+      },
       syp_categoriaId: {
         type: Sequelize.INTEGER,
         references: {

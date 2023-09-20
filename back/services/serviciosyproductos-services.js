@@ -9,13 +9,14 @@ async function getAll() {
   }
 }
 
-async function add(nombre, categoriaId) {
+async function add(nombre, categoriaId, url) {
   try {
     const syp = new db.Serviciosyproductos();
     syp.syp_nombre = nombre;
     syp.syp_categoriaId = categoriaId;
+    syp.syp_url = url
     const sypCreated = await syp.save();
-    return sypCreated;
+    return "servicio/producto agregado con éxito"
   } catch (error) {
     throw new Error('Error al crear el producto/servicio');
   }
@@ -46,13 +47,17 @@ async function getByCategoriaId(categoriaId) {
   }
 }
 
-async function edit(id, nombre, categoriaId) {
+async function edit(id, nombre, categoriaId, url) {
+  console.log(id)
+  const syp = await getById(id);
+    console.log(syp)
   try {
-    const syp = await getById(id);
+    
     if (nombre) syp.syp_nombre = nombre;
     if (categoriaId) syp.syp_categoriaId = categoriaId;
+    if (url) syp.syp_url = url
     const sypEdited = await syp.save();
-    return sypEdited;
+    return "Servicio o producto editado exitosamente";
   } catch (error) {
     throw new Error('Error al editar el producto');
   }
@@ -61,6 +66,7 @@ async function edit(id, nombre, categoriaId) {
 async function deleteProductoServicio(id) {
   const syp = await getById(id);
   await syp.destroy();
+  return "Servicio o producto eliminado con éxito"
 }
 
 module.exports = {

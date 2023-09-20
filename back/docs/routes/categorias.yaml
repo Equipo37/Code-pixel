@@ -1,0 +1,63 @@
+tags:
+  - name: Categorías
+    description: API para manejar solicitudes de categorías
+
+paths:
+  /categorias:
+    get:
+      summary: Consultar lista de categorías
+      tags:
+        - Categorías
+      responses:
+        "200":
+          description: Lista de categorías encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Categoria"
+      description: >
+        Esta ruta permite obtener una lista de todas las categorías disponibles.
+
+  /categorias/{id}:
+    get:
+      summary: Obtener una categoría por su ID
+      tags:
+        - Categorías
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la categoría a obtener
+      responses:
+        "200":
+          description: Categoría obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Categoria"
+        "404":
+          description: Categoría no encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Categoría no encontrada"
+
+components:
+  schemas:
+    Categoria:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        nombre:
+          type: string
+          example: "Categoría Ejemplo"

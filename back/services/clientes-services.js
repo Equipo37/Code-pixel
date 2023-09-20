@@ -1,5 +1,6 @@
 const db = require('../models');
 const jwt = require('jsonwebtoken');
+
 async function getAll() {
   try {
     const clientes = await db.Cliente.findAll();
@@ -9,22 +10,24 @@ async function getAll() {
   }
 }
 
-async function singUp(dni, personahumana, nombre, email, celular, empresa, password) {
+async function singUp(dni, personahumana, nombre, email, celular, empresa, password, admin) {
+    try {
+      const cliente = new db.Cliente();
+      cliente.cli_dni = dni;
+      cliente.cli_personahumana = personahumana;
+      cliente.cli_nombre = nombre;
+      cliente.cli_email = email;
+      cliente.cli_celular = celular;
+      cliente.cli_empresa = empresa;
+      cliente.cli_password = password
+      cliente.cli_admin = admin
+      const clienteCreated = await cliente.save();
+      return "cliente creado con éxito";
+    } catch (error) {
+      throw new Error('Error al crear el cliente');
+    }
+
   
-  try {
-    const cliente = new db.Cliente();
-    cliente.cli_dni = dni;
-    cliente.cli_personahumana = personahumana;
-    cliente.cli_nombre = nombre;
-    cliente.cli_email = email;
-    cliente.cli_celular = celular;
-    cliente.cli_empresa = empresa;
-    cliente.cli_password = password
-    const clienteCreated = await cliente.save();
-    return "cliente creado con éxito";
-  } catch (error) {
-    throw new Error('Error al crear el cliente');
-  }
 }
 
 async function login (email, password) {
@@ -40,7 +43,7 @@ async function login (email, password) {
   const token = jwt.sign({
     dni: cliente.dataValues.cli_dni,
   }, 'ClaveUltraSecreta')
-  return {accessToken: token}
+  return {accessToken: token, cliente: cliente.dataValues}
 }
 
 async function getByDni(dni) {
@@ -74,6 +77,7 @@ async function edit(dni, personahumana, nombre, email, celular, empresa, passwor
 async function deleteCliente(dni) {
   const cliente = await getByDni(dni);
   await cliente.destroy();
+  return "Cliente eliminado con éxito"
 }
 
 module.exports = {

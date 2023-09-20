@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     syp_nombre: {
       type: DataTypes.STRING,
     },
+    syp_url: {
+      type: DataTypes.STRING
+    },
     syp_categoriaId: {
       type: DataTypes.INTEGER,
       references: {
@@ -26,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Serviciosyproductos',
+    timestamps: false,
   });
   return Serviciosyproductos;
 };
