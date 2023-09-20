@@ -43,7 +43,7 @@ async function login (email, password) {
   const token = jwt.sign({
     dni: cliente.dataValues.cli_dni,
   }, 'ClaveUltraSecreta')
-  return {accessToken: token}
+  return {accessToken: token, cliente: cliente.dataValues}
 }
 
 async function getByDni(dni) {

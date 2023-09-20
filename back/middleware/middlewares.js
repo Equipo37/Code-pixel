@@ -5,6 +5,7 @@ const { NotAuthorized } = require("../exceptions/cliente-exceptions");
 
 const isAuthenticated = (req, res, next) => {
   passport.authenticate("jwt", { session: false }, (err, cliente, info) => {
+    req.clientData =cliente.dataValues;
     if (err || !cliente) {
       const error = new NotAuthorized("Cliente no autorizado");
       return next(error);

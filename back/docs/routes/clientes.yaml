@@ -257,6 +257,8 @@ paths:
                     type: string
                     description: Token de acceso para el cliente autenticado
                     example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  cliente:
+                    $ref: "#/components/schemas/Cliente"
         "404":
           description: Cliente no encontrado
           content:

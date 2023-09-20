@@ -2,6 +2,7 @@ const clienteServices = require("../services/clientes-services");
 
 async function getAllClientes(req, res) {
   try {
+    
     const clientes = await clienteServices.getAll();
     if (clientes.length < 1) {
       res.status(404).json({ error: "Cliente no encontrado" });
@@ -26,8 +27,7 @@ async function signUpCliente(req, res) {
     typeof email !== "string" ||
     typeof celular !== "string" ||
     typeof empresa !== "string" ||
-    typeof password !== "string" ||
-    typeof dni !== "string"
+    typeof password !== "string" 
   ) {
     return res.status(400).json({ message: "Tipos de datos incorrectos" });
   }
