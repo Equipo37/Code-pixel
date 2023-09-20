@@ -69,7 +69,7 @@ const corsOptions = {
   credentials: true, // Permite enviar cookies y encabezados de autenticación
 };
 
-app.use(cors(corsOptions));
+app.use(cors(/* corsOptions */)); //CONFIGURAR
 
 if (config.environment === 'production') {
   app.set('trust proxy', 1); // trust first proxy
