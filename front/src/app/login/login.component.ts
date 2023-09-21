@@ -1,60 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-type Client = {
-  dni: string,
-  personahumana: boolean,
-  nombre: string,
-  email: string,
-  celular: string,
-  empresa: string,
-  password: string,
-  admin: boolean,
-  token: string
-}
-
+import { UserService } from '../core/services/user.service';
+import { Client } from '../core/interfaces/Client';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss'],
 })
-
-
-
-
 export class LoginComponent {
-
-  error: string = "";
+  error: string = '';
   username: string = '';
-  password: string = '';	
+  password: string = '';
   cliente: Client = {
-    dni: "",
-  personahumana: true,
-  nombre: "",
-  email: "",
-  celular: "",
-  empresa: "",
-  password: "",
-  admin: false,
-  token: ""
-  }
+    dni: '',
+    personahumana: true,
+    nombre: '',
+    email: '',
+    celular: '',
+    empresa: '',
+    password: '',
+    admin: false,
+    token: '',
+  };
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient 
-  ) { }
+    private http: HttpClient,
+    private userService: UserService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  onSubmit() {
-    this.http.post("https://code-pixel-back.onrender.com/clientes/login", {
-      email: this.username,
-      password: this.password
-    }).subscribe((data: any) => {
-      // Verifica si la solicitud fue exitosa (status 200)
-      if (data.status === 200) {
+  async onSubmit() {
+    try {
+      const data: any = await this.http
+        .post('https://code-pixel-back.onrender.com/clientes/login', {
+          email: this.username,
+          password: this.password,
+        })
+        .toPromise();
+
+      if (data.accessToken) {
         this.cliente.celular = data.cliente.cli_celular;
         this.cliente.dni = data.cliente.cli_dni;
         this.cliente.email = data.cliente.cli_email;
@@ -64,16 +53,20 @@ export class LoginComponent {
         this.cliente.personahumana = data.cliente.cli_personahumana;
         this.cliente.token = data.accessToken;
         console.log('Inicio de sesión exitoso');
+        this.userService.setUserData(this.cliente);
+        this.router.navigate(['/dashboard']);
       } else {
+        this.error = 'Email y/o contraseña inválidos';
         console.log('Inicio de sesión fallido');
       }
-    });
+    } catch (error) {
+      this.error =
+        'Email y/o contraseña inválidos';
+      console.error('Error al iniciar sesión:', error);
+    }
   }
 
   redirectToRegister() {
     this.router.navigate(['/register']);
   }
 }
-
-
-

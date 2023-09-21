@@ -2,13 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http'; 
 import { Observable } from 'rxjs';
+import { Product } from '../core/interfaces/Product';
 
-type Product = {
-  id: number,
-  nombre: string,
-  categoriaId: number,
-  url: string
-}
+
 
 @Component({
   selector: 'app-detail-page',
@@ -30,7 +26,6 @@ export class DetailPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Recuperar el ID del producto de la URL
     this.route.params.subscribe(params => {
       const productoId = params['id']; 
 
