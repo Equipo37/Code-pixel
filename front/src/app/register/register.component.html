@@ -1,0 +1,44 @@
+<div [style.background-image]="getBackgroundImageUrl()" class="background-image">
+    <div class="registerContainer">
+        <!-- <h2 class="titulo">Registrate</h2> -->
+        <form (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <input placeholder="Nombres" type="text" id="nombres" [(ngModel)]="nombres" name="nombres"
+                        required />
+                </div>
+                <div class="form-row">
+                    <input placeholder="Apellidos" type="text" id="apellidos" [(ngModel)]="apellidos" name="apellidos"
+                        required />
+                </div>
+                <div class="form-row">
+                    <input placeholder="DNI" type="text" id="dni" [(ngModel)]="dni" name="dni" required />
+                </div>
+                <div class="form-row">
+                    <input placeholder="Email" type="email" id="email" [(ngModel)]="email" name="email" required />
+                </div>
+                <div class="form-row">
+                    <input placeholder="Celular" type="text" id="celular" [(ngModel)]="celular" name="celular"
+                        required />
+                </div>
+                <div class="form-row">
+                    <label for="personahumana">Persona Jurídica:</label>
+                    <input  type="checkbox" id="personahumana" [(ngModel)]="personahumana"
+                        name="personahumana" />
+                </div>
+                <div class="form-row" >
+                    <input  placeholder="Razon Social" type="text" id="empresa" [(ngModel)]="empresa" name="empresa" />
+                </div>
+                <div class="form-row">
+                    <input placeholder="Contraseña" type="password" id="password" [(ngModel)]="password" name="password"
+                        required />
+                </div>
+                <div class="form-row">
+                    <input placeholder="Repetir Contraseña" type="password" id="confirmPassword"
+                        [(ngModel)]="confirmPassword" name="confirmPassword" required />
+                </div>
+
+            <button class="submit-button" type="submit">Guardar</button>
+        </form>
+    </div>
+
+</div>
