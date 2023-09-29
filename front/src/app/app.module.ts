@@ -18,8 +18,10 @@ import { ProductsPageComponent } from './products-page/products-page.component';
 import { ProductListComponent } from './products-page/product-list/product-list.component';
 import { ProductCardComponent } from './products-page/product-list/product-card/product-card.component';
 import { LogoutComponent } from './logout/logout.component';
+import { EditProfileComponent } from './profile-page/edit-profile/edit-profile.component';
+import { ReservaComponent } from './reserva/reserva.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent, EditProfileComponent, ReservaComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MatSlideToggleModule, MatCardModule, MatButtonModule, MatMenuModule],
   providers: [],
   bootstrap: [AppComponent],

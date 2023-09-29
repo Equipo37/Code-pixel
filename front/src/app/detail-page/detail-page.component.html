@@ -1,5 +1,5 @@
 <div class="detail-container">
-  <mat-card class="example-card">
+  <mat-card *ngIf="!showReservation" class="example-card">
     <mat-card-header class="detail-header">
       <mat-card-title>{{ producto.nombre }}</mat-card-title>
       <mat-card-subtitle>{{ producto.categoriaId }}</mat-card-subtitle>
@@ -14,7 +14,8 @@
       <p >Descripcion</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-stroked-button>Obtener</button>
+      <button mat-stroked-button (click)="openReservation()">Obtener</button>
     </mat-card-actions>
   </mat-card>
+ 
 </div>

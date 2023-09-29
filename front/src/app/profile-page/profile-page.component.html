@@ -2,7 +2,7 @@
     <mat-card class="example-card">
       <mat-card-header class="detail-header">
         <mat-card-title>{{ user.nombre }}</mat-card-title>
-        <mat-card-subtitle>{{ user.telefono }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ user.empresa }}</mat-card-subtitle>
       </mat-card-header>
       <!-- <img
         mat-card-image
@@ -11,10 +11,11 @@
         class="detail-img"
       /> -->
       <mat-card-content>
-        <p >Descripcion</p>
+        <p><b>email:</b> {{user.email}}</p>
+        <p><b>dni:</b> {{user.dni}}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-stroked-button>Obtener</button>
+        <a [routerLink]="'/user/profile/edit'"><button mat-stroked-button color="primary">Editar</button></a>
       </mat-card-actions>
     </mat-card>
   </div>

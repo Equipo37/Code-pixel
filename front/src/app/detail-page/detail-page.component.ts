@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; 
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../core/interfaces/Product';
+import { BackendService } from '../core/services/backend.service';
 
 
 
@@ -17,30 +16,40 @@ export class DetailPageComponent implements OnInit {
     id: 0,
     nombre: '',
     categoriaId: 0,
-    url: ''
+    url: '',
+    precio: 0
   }
+
+  showReservation: Boolean = false;
   
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient 
+    private router: Router,
+    private BackendService: BackendService
+   
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const productoId = params['id']; 
 
-      this.obtenerProductoPorId(productoId).subscribe((data: any) => {
+      this.BackendService.obtenerProductoPorId(productoId).subscribe((data: any) => {
         this.producto.nombre = data.syp_nombre
         this.producto.categoriaId = data.syp_categoriaId
         this.producto.url = data.syp_url
         this.producto.id = data.id
+        this.producto.precio = data.precio
         
       });
     });
   }
 
-  obtenerProductoPorId(id: string): Observable<any> {
-    const url = `https://code-pixel-back.onrender.com/syp/${id}`; // Define la URL para la solicitud
-    return this.http.get<Product>(url); // Realiza la solicitud GET y devuelve un Observable
+
+  openReservation = () => {
+    this.router.navigate([`/products/${this.producto.id}/reservation`]);
   }
+
+  
+
+
 }

@@ -1,0 +1,51 @@
+<div class="background-image">
+  <div class="reservaContainer">
+    <h1 class="editTitle">Reserva tu producto/servicio</h1>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <label for="fecha">Seleccione la fecha de reserva:</label>
+        <input
+          type="date"
+          id="fechaInicio"
+          [(ngModel)]="evento.fechainicio"
+          (ngModelChange)="calcularMonto()"
+          name="fechaInicio"
+          required
+        />
+        <input
+          placeholder="fechaFinal"
+          type="date"
+          id="fechaFinal"
+          [(ngModel)]="evento.fechafin"
+          (ngModelChange)="calcularMonto()"
+          name="fechaFinal"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label for="lugar">Lugar de uso:</label>
+        <input
+          type="text"
+          id="lugar"
+          [(ngModel)]="evento.lugar"
+          name="lugar"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <label for="envio"
+          >¿Desea que se lo llevemos al lugar de destino?</label
+        >
+        <input type="checkbox" id="envio" [(ngModel)]="reserva.res_envio" name="envio" />
+      </div>
+      <div class="monto">
+        <p class="text">Monto a pagar:</p>
+        <p class="text">{{this.reserva.res_monto}}</p>
+      </div>
+
+      <button class="submit-button" type="submit">Aceptar reserva</button>
+    </form>
+  </div>
+</div>
