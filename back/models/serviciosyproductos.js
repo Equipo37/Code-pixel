@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Categoria',
         key: 'id',
       },
+      syp_precio: {
+        type: DataTypes.FLOAT,
+      }
     },
   }, {
     sequelize,

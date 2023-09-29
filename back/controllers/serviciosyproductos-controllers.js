@@ -10,14 +10,14 @@ async function getAll(req, res) {
 }
 
 async function add(req, res) {
-  const { nombre, categoriaId, url } = req.body;
-  if (!nombre || !categoriaId || !url) {
+  const { nombre, categoriaId, url, precio } = req.body;
+  if (!nombre || !categoriaId || !url || !precio) {
     return res.status(400).json({ message: "Faltan datos obligatorios" });
   }
-  console.log(typeof categoriaId)
   if (typeof nombre !== "string" ||
       typeof categoriaId !== "number" ||
-      typeof url !== "string"    
+      typeof url !== "string" ||
+      typeof precio !== "number"    
   ) {
     return res.status(400).json({ message: "Tipos de datos incorrectos" });
   }
@@ -26,7 +26,7 @@ async function add(req, res) {
 
   }
   try {
-    const response = await sypServices.add( nombre, categoriaId, url );
+    const response = await sypServices.add( nombre, categoriaId, url, precio );
     res.status(201).send(response);
   } catch (error) {
     res.status(400).json({ error: error.message });

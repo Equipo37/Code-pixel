@@ -237,6 +237,9 @@ components:
         syp_url:
           type: string
           example: "https://ejemplo.com"
+        syp_precio:
+          type: bigint
+          example: 123
     ServicioProductoInput:
       type: object
       properties:
@@ -249,3 +252,6 @@ components:
         url:
           type: string
           example: "https://nuevo-ejemplo.com"
+        precio:
+          type: bigint
+          example: 123
