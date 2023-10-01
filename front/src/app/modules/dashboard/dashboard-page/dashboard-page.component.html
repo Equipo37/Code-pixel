@@ -25,9 +25,17 @@
         </div>
 
         <div class="dProd">
-            <a href="">
-                <h2>PRODUCTOS</h2>
-            </a>
+            <ul class="menu-horizontal">
+                <li>
+                    <h2>PRODUCTOS</h2>
+                    <ul class="menu-vertical">
+                        <li><a (click)="scrollToElement('sillas')" >Sillas</a></li>
+                        <li><a (click)="scrollToElement('sillones')" >Sillones</a></li>
+                        <li><a (click)="scrollToElement('mesas')" >Mesas</a></li>
+                        <a href=""></a>
+                    </ul>
+                </li>
+            </ul>
             <a href="">
                 <h2>CONTACTO</h2>
             </a>
@@ -52,6 +60,63 @@
 <div class="dNuestrosProductos">
     <div class="dNuestros">
         <h1 class="hNuestros">Nuestros Productos</h1>
+    </div>
+
+    <div class="dProductosDestacados">
+        <div class="dProductos">
+            <div class="dProducto" *ngFor="let producto of productos">
+                <a href="" class="aProducto">
+                    <img src="{{producto.imgUrl}}" alt="">
+                    <div class="dNombProd">
+                        <h2 class="hNombreProd">{{producto.nombre}}</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sillas" class="dNuestrosProductos">
+    <div class="dNuestros">
+        <h1 class="hNuestros">Sillas</h1>
+    </div>
+
+    <div class="dProductosDestacados">
+        <div class="dProductos">
+            <div class="dProducto" *ngFor="let producto of productos">
+                <a href="" class="aProducto">
+                    <img src="{{producto.imgUrl}}" alt="">
+                    <div class="dNombProd">
+                        <h2 class="hNombreProd">{{producto.nombre}}</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mesas" class="dNuestrosProductos">
+    <div class="dNuestros">
+        <h1 class="hNuestros">Mesas</h1>
+    </div>
+
+    <div class="dProductosDestacados">
+        <div class="dProductos">
+            <div class="dProducto" *ngFor="let producto of productos">
+                <a href="" class="aProducto">
+                    <img src="{{producto.imgUrl}}" alt="">
+                    <div class="dNombProd">
+                        <h2 class="hNombreProd">{{producto.nombre}}</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sillones" class="dNuestrosProductos">
+    <div class="dNuestros">
+        <h1 class="hNuestros">Sillones</h1>
     </div>
 
     <div class="dProductosDestacados">

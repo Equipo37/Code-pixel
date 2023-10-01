@@ -1,0 +1,20 @@
+<div class="detail-container">
+  <mat-card class="example-card">
+    <mat-card-header class="detail-header">
+      <mat-card-title>{{ producto.nombre }}</mat-card-title>
+      <mat-card-subtitle>{{ producto.categoriaId }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      [src]="producto.url"
+      alt="{{ producto.nombre }}"
+      class="detail-img"
+    />
+    <mat-card-content>
+      <p >Descripcion</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button>Obtener</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

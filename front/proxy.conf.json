@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://code-pixel-back.onrender.com",
+      "secure": false
+    }
+  }
