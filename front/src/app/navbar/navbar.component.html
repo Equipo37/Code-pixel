@@ -1,0 +1,69 @@
+<div class="navBar">
+    <div class="dEslogan">
+            <div class="dLogoInst">
+            <a href="https://www.instagram.com" target="_blank" class="aInstLogo">
+                <img src="../../../../assets/img/instagramLogo.svg" class="logoInst" />
+            </a>
+            </div>
+            <div class="dMsjEslogan">
+            <p class="msjEslogan">Elevando eventos, creando momentos inolvidables...</p>
+            </div>
+        </div>
+    
+    <div class="logo">
+      <div class="dLogo">
+        <a [routerLink]="'/dashboard'" class="aLogo">
+          <img src="../../../../assets/img/logo.svg" class="imgLogo" />
+        </a>
+      </div>
+    
+      <div class="dInicio">
+        <a [routerLink]="'/dashboard'" class="aInicio">
+          <h2>INICIO</h2>
+        </a>
+      </div>
+      <div class="dProd">
+        <ul class="menu-horizontal">
+            <li>
+                <h2>PRODUCTOS</h2>
+                <ul class="menu-vertical">
+                    <li [routerLink]="'/products/category/0'" >
+                        <a>Stand Eventos</a></li>
+                    <li><a (click)="scrollToElement('mobiliario')" >Mobiliario</a></li>
+                    <li><a (click)="scrollToElement('equipamiento')" >Equipamiento</a></li>
+                    <li><a (click)="scrollToElement('ambientacion')" >Ambientación</a></li>
+                    <li [routerLink]="'/products/category/4'" >
+                        <a>Servicio Pre y Post Venta</a></li>
+                    <a href=""></a>
+                </ul>
+            </li>
+        </ul>
+        <a [routerLink]="">
+          <h2>CONTACTO</h2>
+        </a>
+        <a [routerLink]="">
+          <h2>CONOCENOS</h2>
+        </a>
+        <ng-container *ngIf="user.nombre">
+          <a [routerLink]="'/user/profile'">
+            <h2>PERFIL</h2>
+          </a>
+        </ng-container>
+      </div>
+    
+      <div class="dMiCuenta">
+        <ng-container *ngIf="user.nombre; else loginLink">
+          <a [routerLink]="'/logout'" class="aMiCuenta">
+            <img src="../../../../assets/img/miCuenta.svg" class="iMicuenta" />
+            <p class="pMiCuenta">Salir</p>
+          </a>
+        </ng-container>
+        <ng-template #loginLink>
+          <a [routerLink]="'/login'" class="aMiCuenta">
+            <img src="../../../../assets/img/miCuenta.svg" class="iMicuenta" />
+            <p class="pMiCuenta">Mi Cuenta</p>
+          </a>
+        </ng-template>
+      </div>
+    </div>
+</div>

@@ -7,10 +7,10 @@
       <div>
         <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña"/>
       </div>
+      <p>{{error}}</p>
       <button type="submit">Iniciar Sesión</button>
       <br>
       <a routerLink="/register">Registrate</a>
-      <button type="button" (click)="redirectToRegister()">Registrate</button>
     </form>
   </div>
   

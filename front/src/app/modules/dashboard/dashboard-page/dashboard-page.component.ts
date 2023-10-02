@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 
 interface Productos {
   categoria: string,
@@ -14,45 +14,38 @@ interface Productos {
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.css']
 })
-
 export class DashboardPageComponent {
 
-    productos: Productos[] = [];
+  productos: Productos[] = [];
 
-    constructor( private el:ElementRef ) {
-        this.productos = [
-            {
-                categoria: "sillas",
-                nombre: "SILLON",
-                material: "madera",
-                color: "marron",
-                medida: "12x12x12",
-                imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692196212/Productos/Sillones/Sillon1.svg"
-            },
-            {
+  constructor() {
+    this.productos = [
+        {
             categoria: "sillas",
-                nombre: "SILLA",
-                material: "madera",
-                color: "marron",
-                medida: "12x12x12",
-                imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692194932/Productos/Sillas/Silla1.svg"
-            },
-            {
-                categoria: "sillas",
-                nombre: "MESA",
-                material: "madera",
-                color: "marron",
-                medida: "12x12x12",
-                imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692195722/Productos/Mesas/Mesa1.svg"
-            }
-        ]
-    }
+            nombre: "SILLON",
+            material: "madera",
+            color: "marron",
+            medida: "12x12x12",
+            imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692196212/Productos/Sillones/Sillon1.svg"
+        },
+        {
+          categoria: "sillas",
+            nombre: "SILLA",
+            material: "madera",
+            color: "marron",
+            medida: "12x12x12",
+            imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692194932/Productos/Sillas/Silla1.svg"
+        },
+        {
+            categoria: "sillas",
+            nombre: "MESA",
+            material: "madera",
+            color: "marron",
+            medida: "12x12x12",
+            imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692195722/Productos/Mesas/Mesa1.svg"
+        },
 
-    scrollToElement(elementId: string): void {
-        const element = this.el.nativeElement.querySelector(`#${elementId}`);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
+    ]
+  }
 
-    }
+}
