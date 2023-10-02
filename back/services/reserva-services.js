@@ -36,9 +36,11 @@ async function getByDni(dni) {
     } 
     const promises = reservas.map(async (reserva) => {
       const producto = await db.Serviciosyproductos.findByPk(reserva.syp_id1);
+      const evento = await db.Evento.findByPk(reserva.eve_id1);
       const reservaFinal = {
         reserva: { ...reserva.dataValues },
         producto: { ...producto.dataValues },
+        evento: {...evento.dataValues}
       };
       return reservaFinal;
     });
