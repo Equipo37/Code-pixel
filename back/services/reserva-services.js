@@ -28,13 +28,22 @@ async function add(cli_dni1, eve_id1, res_envio, syp_id1, res_monto ) {
 }
 
 async function getByDni(dni) {
-  console.log(dni)
+  const reservasFinal = []
   try {
     const reservas = await db.Reserva.findAll({ where: { cli_dni1: dni } });
     if (reservas?.length < 1) {
       return "Reservas no encontradas"
     } 
-    return reservas;
+    const promises = reservas.map(async (reserva) => {
+      const producto = await db.Serviciosyproductos.findByPk(reserva.syp_id1);
+      const reservaFinal = {
+        reserva: { ...reserva.dataValues },
+        producto: { ...producto.dataValues },
+      };
+      return reservaFinal;
+    });
+    const reservasFinal = await Promise.all(promises);
+    return reservasFinal;
   } catch (error) {
     console.log(error)
     throw new Error('Error al obtener las reservas');
