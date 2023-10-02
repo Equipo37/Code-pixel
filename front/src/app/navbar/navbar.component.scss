@@ -6,6 +6,7 @@
     opacity: 85%;
     z-index: 1;
     align-items: center;
+    position: fixed;
     
     .dLogoInst {
         display: flex;
@@ -24,8 +25,6 @@
             }
         }
     }
-    
-    
 
     .dMsjEslogan {
         display: flex;
@@ -49,6 +48,7 @@
     opacity: 85%;
     z-index: 1;
     align-items: center;
+    position: fixed;
 
     .dLogo {
         display: flex;
