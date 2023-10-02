@@ -1,12 +1,13 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Client } from '../core/interfaces/Client';
 import { Event } from '../core/interfaces/Event';
 import { Product } from '../core/interfaces/Product';
 import { Reservation } from '../core/interfaces/Reservation';
 import { BackendService } from '../core/services/backend.service';
 import { UserService } from '../core/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reserva',
@@ -67,7 +68,13 @@ export class ReservaComponent implements OnInit {
           const reservaData: Reservation = (res)
           if (reservaData) {
             this.reserva = reservaData
-            
+            this.showMessage("La reserva se realizó con éxito", false)
+            setTimeout(() => {
+              this.router.navigate([`/user/profile`]);
+            }, 2000)
+
+          } else {
+            this.showMessage("Hubo un error en la reserva", true)
           }
         })
       }
@@ -93,8 +100,18 @@ export class ReservaComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private BackendService: BackendService
+    private BackendService: BackendService,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
+
+  showMessage(message: string, isError: boolean = false) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+      panelClass: isError ? 'error-snackbar' : 'success-snackbar', // Clases CSS personalizadas para el estilo de error o éxito
+    });
+  }
+
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
