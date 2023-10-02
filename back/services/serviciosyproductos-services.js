@@ -9,9 +9,10 @@ async function getAll() {
   }
 }
 
-async function add(nombre, categoriaId, url, precio) {
+async function add(nombre, categoriaId, url, precio, descripcion) {
   try {
     const syp = new db.Serviciosyproductos();
+    syp.syp_descripcion = descripcion
     syp.syp_precio = precio
     syp.syp_nombre = nombre;
     syp.syp_categoriaId = categoriaId;
@@ -49,12 +50,12 @@ async function getByCategoriaId(categoriaId) {
   }
 }
 
-async function edit(id, nombre, categoriaId, url, precio) {
+async function edit(id, nombre, categoriaId, url, precio, descripcion) {
   console.log(id)
   const syp = await getById(id);
     console.log(syp)
   try {
-    
+    if (descripcion) syp.syp_descripcion = descripcion
     if (nombre) syp.syp_nombre = nombre;
     if (categoriaId) syp.syp_categoriaId = categoriaId;
     if (url) syp.syp_url = url

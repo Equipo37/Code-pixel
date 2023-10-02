@@ -10,14 +10,15 @@ async function getAll(req, res) {
 }
 
 async function add(req, res) {
-  const { nombre, categoriaId, url, precio } = req.body;
-  if (!nombre || !categoriaId || !url || !precio) {
+  const { nombre, categoriaId, url, precio, descripcion } = req.body;
+  if (!nombre || !categoriaId || !url || !precio || !descripcion) {
     return res.status(400).json({ message: "Faltan datos obligatorios" });
   }
   if (typeof nombre !== "string" ||
       typeof categoriaId !== "number" ||
       typeof url !== "string" ||
-      typeof precio !== "number"    
+      typeof precio !== "number" ||
+      typeof descripcion !== "string"   
   ) {
     return res.status(400).json({ message: "Tipos de datos incorrectos" });
   }
@@ -26,7 +27,7 @@ async function add(req, res) {
 
   }
   try {
-    const response = await sypServices.add( nombre, categoriaId, url, precio );
+    const response = await sypServices.add( nombre, categoriaId, url, precio, descripcion );
     res.status(201).send(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -46,15 +47,16 @@ async function getById(req, res) {
 async function edit(req, res) {
   let { id } = req.params;
   id = parseInt(id)
-  const { nombre, categoriaId, url } = req.body;
+  const { nombre, categoriaId, url, descripcion } = req.body;
   if ((typeof id !== "number") ||
   (categoriaId && typeof categoriaId !== "number") ||
   (nombre && typeof nombre !== "string") || 
+  (descripcion && typeof descripcion !== "string") ||
   (url && typeof url !== "string" )) {
     return res.status(400).json({ message: "Tipos de datos incorrectos" });
   }
   try {
-    const response = await sypServices.edit(id, nombre, categoriaId, url);
+    const response = await sypServices.edit(id, nombre, categoriaId, url, descripcion);
     res.status(200).send(response);
   } catch (error) {
     res.status(400).json({ error: error.message });

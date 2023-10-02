@@ -24,6 +24,9 @@ module.exports = {
           model: 'Categoria', 
           key: 'id' 
         }
+      },
+      syp_descripcion: {
+        type: Sequelize.STRING
       }
     });
   },

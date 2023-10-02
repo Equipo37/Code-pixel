@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     syp_url: {
       type: DataTypes.STRING
     },
+    syp_descripcion: {
+      type: DataTypes.STRING
+    },
     syp_categoriaId: {
       type: DataTypes.INTEGER,
       references: {
