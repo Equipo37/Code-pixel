@@ -30,7 +30,7 @@ export class ReservationsComponent implements OnInit {
     cli_dni1: '',
     eve_id1: 0,
     res_envio: false,
-    syp_id1: 0,
+    syp_id1: [],
     res_monto: 0
   }
   

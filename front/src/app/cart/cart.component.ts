@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Products } from '../core/interfaces/Products';
 import { CartService } from '../core/services/cart.service';
 
@@ -7,17 +9,36 @@ import { CartService } from '../core/services/cart.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
 
   cart: any = []
-  constructor(private cartService: CartService) { }
+  private cartSubscription: Subscription = new Subscription;
+  constructor(private cartService: CartService, private router: Router) { }
+
+  removeItem = (id: any) => {
+    this.cartService.removeCartData(id)
+  }
+  
+  clearData = () => {
+    this.cartService.clearCartData()
+  }
+
+  confirmReservation = () => {
+    this.router.navigate(['/cart/reservation'])
+  }
 
   ngOnInit(): void {
-    const cartData = this.cartService.getCartData()
-    if (cartData && cartData.length > 0) {
-      this.cart = cartData
-      console.log(cartData)
-    }
+    this.cartSubscription = this.cartService.getCartDataObservable().subscribe((cartData: any) => {
+      if (cartData && cartData.length > 0) {
+        this.cart = cartData;
+      } else {
+        this.cart = [];
+      }
+    });
+  }
+
+  ngOnDestroy(): void { 
+    this.cartSubscription.unsubscribe();
   }
 
 }

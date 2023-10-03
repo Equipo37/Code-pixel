@@ -31,7 +31,7 @@ const routes: Routes = [
     path: "products/:id",
     component: DetailPageComponent
   }, {
-    path: "products/:id/reservation",
+    path: "cart/reservation",
     component: ReservaComponent
   },
   {

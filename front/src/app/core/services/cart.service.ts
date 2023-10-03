@@ -18,15 +18,24 @@ export class CartService {
   }
 
   setCartData(product: Product): void {
+    console.log(product)
     const cart: any = this.cartDataSubject.value || []
     cart.push(product)
-    
+    console.log(cart)
     this.cartDataSubject.next(cart);
     localStorage.setItem(this.cartDataKey, JSON.stringify(cart));
   }
 
   getCartData(): Products[] | undefined {
     return this.cartDataSubject.value;
+  }
+
+  removeCartData(id: any): void {
+    const cart: any = this.cartDataSubject.value || []
+    const cartFiltered = cart.filter((prod: { id: any; }) => prod.id !== id)
+
+    this.cartDataSubject.next(cartFiltered);
+    localStorage.setItem(this.cartDataKey, JSON.stringify(cartFiltered));
   }
 
   clearCartData(): void {

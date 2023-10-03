@@ -44,7 +44,7 @@ export class DetailPageComponent implements OnInit {
         this.producto.categoriaId = data.syp_categoriaId
         this.producto.url = data.syp_url
         this.producto.id = data.id
-        this.producto.precio = data.precio
+        this.producto.precio = data.syp_precio
         
       });
     });

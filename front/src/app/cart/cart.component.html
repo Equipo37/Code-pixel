@@ -1,22 +1,20 @@
-<div *ngIf="cart.length > 0">
-  <div class="" *ngFor="let producto of cart">
-    <mat-card class="example-card">
-      <mat-card-header class="product-header">
-        <mat-card-title>{{ producto?.nombre }}</mat-card-title>
-        <mat-card-subtitle>{{ producto?.categoriaId }}</mat-card-subtitle>
-      </mat-card-header>
-      <img
-        mat-card-image
-        [src]="producto?.url"
-        alt="{{ producto?.nombre }}"
-        class="product-img"
-      />
-      <mat-card-content>
-        <p>Descripcion</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-stroked-button>Quitar</button>
-      </mat-card-actions>
-    </mat-card>
+<div class="cart-container">
+  <div *ngIf="cart.length > 0" class="cart-container">
+    <div class="" *ngFor="let producto of cart">
+      <mat-card class="example-card">
+        <mat-card-header class="product-header">
+          <mat-card-title>{{ producto?.nombre }}</mat-card-title>
+          <mat-card-subtitle>
+            categoría: {{ producto?.categoriaId }}</mat-card-subtitle
+          >
+        </mat-card-header>
+
+        <mat-card-actions>
+          <button mat-stroked-button (click)="removeItem(producto.id)">Quitar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
+  <button mat-stroked-button (click)="clearData()">Borrar Todos</button>
+  <button *ngIf="cart.length > 0" mat-stroked-button (click)="confirmReservation()">Confirmar Reserva</button>
 </div>
