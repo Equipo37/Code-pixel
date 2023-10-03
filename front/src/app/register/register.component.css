@@ -21,11 +21,12 @@ html {
   flex-direction: column;
   z-index: 1;
   position: relative;
-  height: 80vh;
+  height: auto;
   align-items: center;
   justify-content: center;
   font-family: 'Times New Roman', serif;
-  margin: auto;
+  margin-top: 230px;
+  /* margin: auto; */
 }
 
 h2 {

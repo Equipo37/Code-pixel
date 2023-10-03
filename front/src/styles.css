@@ -6,3 +6,17 @@ html {
 body {
     margin: 0px;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    background: rgba(255, 255, 195, 0.85)
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(145, 146, 126);
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(76, 77, 66);
+}
