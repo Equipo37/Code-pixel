@@ -16,14 +16,18 @@ type Producto = {
 })
 export class DashboardPageComponent implements OnInit {
 
-    productos: Producto[] = [];
+    productosCat1: Producto[] = [];
+    productosCat2: Producto[] = [];
+    productosCat3: Producto[] = [];
 
     constructor( private http: HttpClient ) {
         
     }
     ngOnInit(): void {
         this.http.get<Producto[]>('https://code-pixel-back.onrender.com/syp').subscribe((productoList: Producto[]) => {
-            this.productos = productoList.filter( producto => producto.syp_categoriaId === 2 )
+            this.productosCat1 = productoList.filter( producto => producto.syp_categoriaId === 1 )
+            this.productosCat2 = productoList.filter( producto => producto.syp_categoriaId === 2 )
+            this.productosCat3 = productoList.filter( producto => producto.syp_categoriaId === 3 )
         });
     }
 
