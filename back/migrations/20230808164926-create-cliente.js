@@ -17,6 +17,10 @@ module.exports = {
         allowNull: false
 
       },
+      cli_admin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+      },
       cli_email: {
         type: Sequelize.STRING(50),
         allowNull: false

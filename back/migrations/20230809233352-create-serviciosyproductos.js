@@ -12,12 +12,21 @@ module.exports = {
       syp_nombre: {
         type: Sequelize.STRING
       },
+      syp_url: {
+        type: Sequelize.STRING
+      },
+      syp_precio: {
+        type: Sequelize.FLOAT
+      },
       syp_categoriaId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Categoria', 
           key: 'id' 
         }
+      },
+      syp_descripcion: {
+        type: Sequelize.STRING
       }
     });
   },

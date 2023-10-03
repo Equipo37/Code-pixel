@@ -1,0 +1,16 @@
+<div class="reserva-container">
+  <div *ngFor="let reserva of reservas">
+    <mat-card class="example-card">
+      <mat-card-header class="reserva-header">
+        <mat-card-title> user.nombre</mat-card-title>
+        <mat-card-subtitle>user.empresa</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p><b>email:</b>user.email</p>
+        <p><b>dni:</b>user.dni</p>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</div>

@@ -35,4 +35,12 @@ export class BackendService {
     return this.http.post(url, reserva, {headers})
   }
 
+  getReservasByDni(dni: string, token: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const url=`https://code-pixel-back.onrender.com/reservas/cliente/${dni}`;
+    return this.http.get(url, {headers})
+  }
+
 }

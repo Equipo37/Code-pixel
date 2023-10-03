@@ -8,6 +8,7 @@ import { ProductsPageComponent } from './products-page/products-page.component';
 import { LogoutComponent } from './logout/logout.component';
 import { EditProfileComponent } from './profile-page/edit-profile/edit-profile.component';
 import { ReservaComponent } from './reserva/reserva.component';
+import { ReservationsComponent } from './profile-page/reservations/reservations.component';
 
 const routes: Routes = [
   {
@@ -46,11 +47,14 @@ const routes: Routes = [
   {
     path: "logout",
     component: LogoutComponent
+  }, {
+    path: 'user/profile/reservations',
+    component: ReservationsComponent
   },
   {
     path: '**',
     redirectTo: 'dashboard',
-  },
+  }
 ];
 
 @NgModule({
