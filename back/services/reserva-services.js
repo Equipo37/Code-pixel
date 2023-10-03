@@ -11,13 +11,19 @@ async function getAll() {
 
 async function add(cli_dni1, eve_id1, res_envio, syp_id1, res_monto ) {
     try {
+      
       const reserva = new db.Reserva();
       reserva.cli_dni1 = cli_dni1;
       reserva.eve_id1 = eve_id1;
       reserva.res_envio = res_envio;
-      reserva.syp_id1 = syp_id1;
       reserva.res_monto = res_monto;
       const reservaCreated = await reserva.save();
+      for (const servicioProductoId of syp_id1) {
+        const reservaServicio = new db.ReservaServicio();
+        reservaServicio.reservaId = reservaCreated.id;
+        reservaServicio.servicioProductoId = servicioProductoId;
+        await reservaServicio.save();
+      }
       return reservaCreated
     } catch (error) {
       console.log(error)
@@ -28,18 +34,24 @@ async function add(cli_dni1, eve_id1, res_envio, syp_id1, res_monto ) {
 }
 
 async function getByDni(dni) {
-  const reservasFinal = []
+  const products = []
   try {
     const reservas = await db.Reserva.findAll({ where: { cli_dni1: dni } });
     if (reservas?.length < 1) {
       return "Reservas no encontradas"
     } 
     const promises = reservas.map(async (reserva) => {
-      const producto = await db.Serviciosyproductos.findByPk(reserva.syp_id1);
+      const reservaServicios = await db.ReservaServicio.findAll({where: {reservaId: reserva.id}})
+      const promises2 = reservaServicios.map(async (res) => {
+        let product = await db.Serviciosyproductos.findByPk(res.servicioProductoId)
+        return product
+      })
+      const products2 = await Promise.all(promises2);
+      products.push(...products2);
       const evento = await db.Evento.findByPk(reserva.eve_id1);
       const reservaFinal = {
         reserva: { ...reserva.dataValues },
-        producto: { ...producto.dataValues },
+        products,
         evento: {...evento.dataValues}
       };
       return reservaFinal;

@@ -1,10 +1,15 @@
-const {
-  Model,
-} = require('sequelize');
+'use strict';
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Serviciosyproductos extends Model {
-
+    static associate(models) {
+      Serviciosyproductos.belongsToMany(models.Reserva, {
+        through: 'ReservaServicio',
+        foreignKey: 'servicioProductoId',
+        otherKey: 'reservaId'
+      });
+    }
   }
   Serviciosyproductos.init({
     id: {
@@ -17,10 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     syp_url: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     syp_descripcion: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     syp_categoriaId: {
       type: DataTypes.INTEGER,
@@ -28,9 +33,9 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Categoria',
         key: 'id',
       },
-      syp_precio: {
-        type: DataTypes.FLOAT,
-      }
+    },
+    syp_precio: {
+      type: DataTypes.FLOAT,
     },
   }, {
     sequelize,

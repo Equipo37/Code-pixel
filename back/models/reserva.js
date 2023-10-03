@@ -1,14 +1,11 @@
-"use strict";
+'use strict';
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Reserva extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Reserva.belongsToMany(models.Serviciosyproductos, { through: "ReservaServicio", foreignKey: 'reservaId',
+      otherKey: 'servicioProductoId' }); 
     }
   }
   Reserva.init(
@@ -18,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
         unique: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
       res_envio: DataTypes.BOOLEAN,
       res_monto: DataTypes.DOUBLE,
@@ -36,13 +33,7 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      syp_id1: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "Serviciosyproductos",
-          key: "id"
-        }
-      }
+      
     },
     {
       sequelize,

@@ -23,9 +23,9 @@ async function addReserva(req, res) {
   }
   const cliente = clienteServices.getByDni(cli_dni1)
   const evento = eventoServices.getById(eve_id1)
-  const syp = sypServices.getById(syp_id1)
 
-  if (!cliente || !evento || !syp) {
+
+  if (!cliente || !evento) {
     return res.status(400).json({message: "No existe un cliente con ese dni"})
   }
 

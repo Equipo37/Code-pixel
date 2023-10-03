@@ -1,18 +1,17 @@
-"use strict";
-/** @type {import('sequelize-cli').Migration} */
+'use strict';
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("reservas", {
+    await queryInterface.createTable("Reservas", {
       res_envio: {
         type: Sequelize.BOOLEAN,
       },
-
-     id: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
         unique: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
       cli_dni1: {
         type: Sequelize.STRING(8),
@@ -28,15 +27,9 @@ module.exports = {
           key: "id",
         },
       },
-      syp_id1: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Serviciosyproductos",
-          key: "id"
-        },
-      },
+  
       res_monto: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       createdAt: {
         allowNull: false,
