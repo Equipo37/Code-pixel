@@ -1,7 +1,10 @@
 .reserva-container {
     padding-top: 10px;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   
   }
 
@@ -12,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     padding: 30px;
+    border: 1px solid #b6b6b6;
   }
   .reserva-header {
     text-align: center;

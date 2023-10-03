@@ -19,3 +19,13 @@
 .detail-header {
   text-align: center;
 }
+
+.success-snackbar {
+  background-color: green;
+  color: white;
+}
+
+.error-snackbar {
+  background-color: red;
+  color: white;
+}

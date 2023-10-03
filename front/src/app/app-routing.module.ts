@@ -9,6 +9,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { EditProfileComponent } from './profile-page/edit-profile/edit-profile.component';
 import { ReservaComponent } from './reserva/reserva.component';
 import { ReservationsComponent } from './profile-page/reservations/reservations.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,9 @@ const routes: Routes = [
   {
     path: "products/category/:id",
     component: ProductsPageComponent
+  }, {
+    path: "cart",
+    component: CartComponent
   },
   {
     path: "logout",

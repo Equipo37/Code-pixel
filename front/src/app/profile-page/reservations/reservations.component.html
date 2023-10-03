@@ -2,13 +2,16 @@
   <div *ngFor="let reserva of reservas">
     <mat-card class="example-card">
       <mat-card-header class="reserva-header">
-        <mat-card-title> user.nombre</mat-card-title>
-        <mat-card-subtitle>user.empresa</mat-card-subtitle>
+        <mat-card-title> {{reserva?.producto?.syp_nombre}}</mat-card-title>
+        <mat-card-subtitle>{{reserva?.reserva?.createdAt}}</mat-card-subtitle>
       </mat-card-header>
 
       <mat-card-content>
-        <p><b>email:</b>user.email</p>
-        <p><b>dni:</b>user.dni</p>
+        <p><b>Monto: </b> {{reserva?.reserva?.res_monto}}</p>
+        <p><b>Incluye envío: </b> {{reserva?.reserva?.res_envio? "Sí" : "No"}}</p>
+        <p><b>Lugar del evento: </b> {{reserva?.evento?.eve_lugar}}</p>
+        <p><b>Fecha de inicio:</b> {{reserva?.evento?.eve_fechainicio | date: 'yyyy-MM-dd'}}</p>
+        <p><b>Fecha de finalización: </b> {{ reserva?.evento?.eve_fechafin | date: 'yyyy-MM-dd' }}</p>
       </mat-card-content>
 
     </mat-card>
