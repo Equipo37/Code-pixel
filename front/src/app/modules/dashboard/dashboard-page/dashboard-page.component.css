@@ -12,9 +12,9 @@
 }
 
 .dNuestrosProductos {
-    height: 67.5rem;
     background-color: rgba(255, 225, 195, 0.4);
-
+    flex-wrap: wrap;
+    
     .dNuestros {
         display: flex;
         padding-top: 3.75rem;
@@ -28,23 +28,25 @@
             color: rgba(0, 0, 0, 0.4)
         }
     }
-
+    
     .dProductosDestacados {
         display: flex;
         margin: 0rem;
-        height: 37.5rem;
+        height: auto;
         justify-content: center;
         padding-top: 5rem;
         .dProductos {
-            width: 95rem;
-            height: 600;
+            width: 67.5rem;
+            height: auto;
             /* background-color: burlywood; */
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
+            flex-wrap: wrap;
             .dProducto {
                 width: 20.6rem;
                 height: auto;
+                margin: 30px 0px 30px;
                 .aProducto {
                     text-decoration: none;
                     color: rgba(0, 0, 0, 0.4);
