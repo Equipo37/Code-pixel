@@ -8,6 +8,8 @@ import { Reservation } from '../core/interfaces/Reservation';
 import { BackendService } from '../core/services/backend.service';
 import { UserService } from '../core/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Products } from '../core/interfaces/Products';
+import { CartService } from '../core/services/cart.service';
 
 @Component({
   selector: 'app-reserva',
@@ -15,17 +17,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./reserva.component.css'],
 })
 export class ReservaComponent implements OnInit {
+  error: String = '';
 
-  error: String = ""
-  
   reserva: Reservation = {
     res_id: 0,
     cli_dni1: '',
     eve_id1: 0,
     res_envio: false,
-    syp_id1: 0,
-    res_monto: 0,
-  };
+    syp_id1: [],
+    res_monto: 0
+  }
 
   evento: Event = {
     id: 0,
@@ -46,51 +47,56 @@ export class ReservaComponent implements OnInit {
     token: '',
   };
 
+  cart: any
 
-  producto: Product = {
-    id: 0,
-    nombre: '',
-    categoriaId: 0,
-    url: '',
-    precio: 200,
-  };
+  productos: any = [];
 
   onSubmit() {
-    
-    this.BackendService.postEvento(this.evento, this.user.token).subscribe((response) => {
-      const eventData: Event = (response);
-      if (eventData) {
-        this.evento = eventData
-        this.reserva.eve_id1 = eventData.id
-        console.log(this.reserva)
-        this.BackendService.postReserva(this.reserva, this.user.token).subscribe((res) => {
-          console.log(res)
-          const reservaData: Reservation = (res)
-          if (reservaData) {
-            this.reserva = reservaData
-            this.showMessage("La reserva se realizó con éxito", false)
-            setTimeout(() => {
-              this.router.navigate([`/user/profile`]);
-            }, 2000)
-
-          } else {
-            this.showMessage("Hubo un error en la reserva", true)
-          }
-        })
+    this.BackendService.postEvento(this.evento, this.user.token).subscribe(
+      (response) => {
+        const eventData: Event = response;
+        if (eventData) {
+          this.evento = eventData;
+          this.reserva.eve_id1 = eventData.id;
+          console.log(this.reserva);
+          this.BackendService.postReserva(
+            {...this.reserva},
+            this.user.token
+          ).subscribe((res) => {
+            console.log(res);
+            const reservaData: Reservation = res;
+            if (reservaData) {
+              this.reserva = reservaData;
+              this.showMessage('La reserva se realizó con éxito', false);
+              setTimeout(() => {
+                this.router.navigate([`/user/profile`]);
+                this.cartService.clearCartData();
+              }, 2000);
+            } else {
+              this.showMessage('Hubo un error en la reserva', true);
+            }
+          });
+        }
       }
-    })
- 
-  } 
+    );
+  }
 
   calcularMonto() {
     const fechaInicio = new Date(this.evento.fechainicio);
     const fechaFin = new Date(this.evento.fechafin);
     if (!isNaN(fechaInicio.getTime()) && !isNaN(fechaFin.getTime())) {
-
-      const diferenciaEnMilisegundos = fechaFin.getTime() - fechaInicio.getTime();
+      const diferenciaEnMilisegundos =
+        fechaFin.getTime() - fechaInicio.getTime();
       const dias = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));
       if (dias > 0) {
-        this.reserva.res_monto = (this.producto.precio || 100) * dias;
+        if (this.cart.length > 0) {
+          this.reserva.res_monto = this.cart.reduce(
+            (acc: number, el: any ) => {
+              return acc + el.precio * dias;
+            },
+            0
+          );
+        }
       }
     } else {
       console.error('Fechas no válidas');
@@ -102,37 +108,29 @@ export class ReservaComponent implements OnInit {
     private route: ActivatedRoute,
     private BackendService: BackendService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) {}
 
   showMessage(message: string, isError: boolean = false) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 3000,
-      panelClass: isError ? 'error-snackbar' : 'success-snackbar', // Clases CSS personalizadas para el estilo de error o éxito
+      panelClass: isError ? 'error-snackbar' : 'success-snackbar',
     });
   }
 
+  idCart = []
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.producto.id = params['id'];
-    });
-
-    this.BackendService.obtenerProductoPorId(
-      this.producto.id.toString()
-    ).subscribe((data: any) => {
-      this.producto.nombre = data.syp_nombre;
-      this.producto.categoriaId = data.syp_categoriaId;
-      this.producto.url = data.syp_url;
-      this.producto.id = data.id;
-      this.producto.precio = data.precio;
-      this.reserva.syp_id1 = data.id
-    });
-
+    this.cart = this.cartService.getCartData()
+    this.idCart = this.cart.map((prod: { id: any; }) => {
+      return prod.id
+    })
+    this.reserva.syp_id1 = this.idCart
     const userData = this.userService.getUserData();
     if (userData?.dni) {
       this.user = userData;
-      this.reserva.cli_dni1 = userData.dni
+      this.reserva.cli_dni1 = userData.dni;
     }
   }
 }

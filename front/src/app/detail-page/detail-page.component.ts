@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../core/interfaces/Product';
 import { BackendService } from '../core/services/backend.service';
+import { CartService } from '../core/services/cart.service';
 
 
 
@@ -25,9 +27,13 @@ export class DetailPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private BackendService: BackendService
+    private BackendService: BackendService,
+    private cartService: CartService,
+    private snackBar: MatSnackBar
    
   ) { }
+
+
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -38,18 +44,23 @@ export class DetailPageComponent implements OnInit {
         this.producto.categoriaId = data.syp_categoriaId
         this.producto.url = data.syp_url
         this.producto.id = data.id
-        this.producto.precio = data.precio
+        this.producto.precio = data.syp_precio
         
       });
     });
   }
 
-
-  openReservation = () => {
-    this.router.navigate([`/products/${this.producto.id}/reservation`]);
+  showMessage(message: string, isError: boolean = false) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000,
+      panelClass: isError ? 'error-snackbar' : 'success-snackbar', 
+    });
   }
 
-  
-
+  addToCart = () => {
+    this.cartService.setCartData(this.producto)
+    this.showMessage("Se agregó al carrito con éxito", false)
+    this.router.navigate([`/dashboard`]);
+  }
 
 }

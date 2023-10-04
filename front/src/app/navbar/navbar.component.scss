@@ -192,3 +192,25 @@
 }
 
 
+.cart {
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.cart-notification {
+    background-color: red;
+    border-radius: 50%;
+    width: 25px;
+    position: relative;
+    top: 5px;
+    left: 35px;
+    height: 25px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}

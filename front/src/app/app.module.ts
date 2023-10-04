@@ -22,9 +22,12 @@ import { EditProfileComponent } from './profile-page/edit-profile/edit-profile.c
 import { ReservaComponent } from './reserva/reserva.component';
 import {  MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReservationsComponent } from './profile-page/reservations/reservations.component';
+import { CartComponent } from './cart/cart.component';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent, EditProfileComponent, ReservaComponent, ReservationsComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MatSlideToggleModule, MatCardModule, MatButtonModule, MatMenuModule, MatSnackBarModule],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent, EditProfileComponent, ReservaComponent, ReservationsComponent, CartComponent],
+  imports: [BrowserModule, MatIconModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MatSlideToggleModule, MatCardModule, MatButtonModule, MatMenuModule, MatSnackBarModule],
   providers: [],
   bootstrap: [AppComponent],
 })
