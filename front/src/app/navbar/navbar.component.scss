@@ -1,4 +1,4 @@
-.dEslogan {
+.navBar {
     display: flex;
     width: 100%;
     height: 2.5rem;
@@ -6,7 +6,19 @@
     opacity: 85%;
     z-index: 1;
     align-items: center;
-    position: fixed;
+    position: absolute;
+}
+
+.dEslogan {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2.5rem;
+    background-color: rgb(255, 225, 195);
+    z-index: 1;
+    align-items: center;
     
     .dLogoInst {
         display: flex;
@@ -25,6 +37,8 @@
             }
         }
     }
+    
+    
 
     .dMsjEslogan {
         display: flex;
@@ -40,15 +54,14 @@
 
 .logo {
     display: flex;
+    position: absolute;
     top: 2.5rem;
     left: 0;
     width: 100%;
     height: 6.9rem;
     background-color: rgb(40, 95, 55);
-    opacity: 85%;
     z-index: 1;
     align-items: center;
-    position: fixed;
 
     .dLogo {
         display: flex;
@@ -90,8 +103,46 @@
         display: flex;
         width: 34.4rem;
         justify-content: space-between;
+
+        .menu-horizontal{
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 0px;
+        }
+        
+        .menu-horizontal > li > a{
+            display: block;
+            padding: 15px 20px;
+            color: black;
+            text-decoration: none;
+        }
+        .menu-vertical{
+            position: absolute;
+            display: none;
+            list-style: none;
+            width: 150px;
+            background-color: rgba(0, 0, 0, .5);
+            padding: 0px;
+        }
+        .menu-horizontal li:hover .menu-vertical{
+            display: block;
+        }
+        .menu-vertical li:hover{
+            background-color: black;
+        }
+        
+        .menu-vertical li a{
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 15px 15px 20px;
+            font-size: 16px;
+        }
         & a {
             text-decoration: none;
+            display: flex;
+            align-items: center;
         }
         & h2 {
             display: flex;
@@ -100,6 +151,7 @@
             margin: 0rem;
             height: 1.125rem;
             align-items: center;
+            padding: 15px 0px;
             &:hover{
                 color: rgb(255, 225, 195);
             }
@@ -118,8 +170,9 @@
                 padding-right: 1.6rem;
             }
             .pMiCuenta {
+                display: flex;
+                justify-content: center;
                 color: rgb(255, 255, 255);
-                text-align: center;
                 margin: 0rem;
                 width: 5.125rem;
                 font-weight: bold;
@@ -130,6 +183,14 @@
         }
     }
 }
+
+.homePageImg {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 0;
+}
+
 
 .cart {
     font-size: 40px;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { UserService } from '../core/services/user.service';
 import { NgZone } from '@angular/core';
 import { CartService } from '../core/services/cart.service';
@@ -32,4 +32,13 @@ export class NavbarComponent implements OnInit {
       this.cart = cartData
     })
   }
+
+    scrollToElement(elementId: string): void {
+        const element = document.getElementById(elementId);
+        if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+  
+
 }

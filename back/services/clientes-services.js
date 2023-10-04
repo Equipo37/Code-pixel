@@ -1,6 +1,5 @@
 const db = require('../models');
 const jwt = require('jsonwebtoken');
-
 async function getAll() {
   try {
     const clientes = await db.Cliente.findAll();

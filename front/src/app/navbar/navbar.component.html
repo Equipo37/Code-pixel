@@ -1,49 +1,43 @@
 <div class="navBar">
   <div class="dEslogan">
-    <div class="dLogoInst">
-      <a href="https://www.instagram.com" target="_blank" class="aInstLogo">
-        <img src="../../../../assets/img/instagramLogo.svg" class="logoInst" />
-      </a>
-    </div>
-    <div class="dMsjEslogan">
-      <p class="msjEslogan">
-        Elevando eventos, creando momentos inolvidables...
-      </p>
-    </div>
-  </div>
-
+          <div class="dLogoInst">
+          <a href="https://www.instagram.com" target="_blank" class="aInstLogo">
+              <img src="../../../../assets/img/instagramLogo.svg" class="logoInst" />
+          </a>
+          </div>
+          <div class="dMsjEslogan">
+          <p class="msjEslogan">Elevando eventos, creando momentos inolvidables...</p>
+          </div>
+      </div>
+  
   <div class="logo">
     <div class="dLogo">
       <a [routerLink]="'/dashboard'" class="aLogo">
         <img src="../../../../assets/img/logo.svg" class="imgLogo" />
       </a>
     </div>
-
+  
     <div class="dInicio">
       <a [routerLink]="'/dashboard'" class="aInicio">
         <h2>INICIO</h2>
       </a>
     </div>
     <div class="dProd">
-      <button mat-button [matMenuTriggerFor]="menu"><h2>PRODUCTOS</h2></button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink]="'/products/category/0'">
-          Stand Eventos
-        </button>
-        <button mat-menu-item [routerLink]="'/products/category/1'">
-          Mobiliario
-        </button>
-        <button mat-menu-item [routerLink]="'/products/category/2'">
-          Equipamiento
-        </button>
-        <button mat-menu-item [routerLink]="'/products/category/3'">
-          Ambientación
-        </button>
-        <button mat-menu-item [routerLink]="'/products/category/4'">
-          Servicios Pre y Pos Eventos
-        </button>
-      </mat-menu>
-
+      <ul class="menu-horizontal">
+          <li>
+              <h2>PRODUCTOS</h2>
+              <ul class="menu-vertical">
+                  <li [routerLink]="'/products/category/0'" >
+                      <a>Stand Eventos</a></li>
+                  <li><a (click)="scrollToElement('mobiliario')" >Mobiliario</a></li>
+                  <li><a (click)="scrollToElement('equipamiento')" >Equipamiento</a></li>
+                  <li><a (click)="scrollToElement('ambientacion')" >Ambientación</a></li>
+                  <li [routerLink]="'/products/category/4'" >
+                      <a>Servicio Pre y Post Venta</a></li>
+                  <a href=""></a>
+              </ul>
+          </li>
+      </ul>
       <a [routerLink]="">
         <h2>CONTACTO</h2>
       </a>
@@ -56,7 +50,7 @@
         </a>
       </ng-container>
     </div>
-
+  
     <div class="dMiCuenta">
       <ng-container *ngIf="user.nombre; else loginLink">
         <a [routerLink]="'/logout'" class="aMiCuenta">
@@ -76,5 +70,4 @@
       <mat-icon class="cart">shopping_cart</mat-icon>
     </div>
   </div>
- 
 </div>

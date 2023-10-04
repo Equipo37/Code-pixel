@@ -2,21 +2,63 @@
     <img src="../../../../assets/img/fondoHomePage.jpg" class="homePageImg">
 </div>
 
-<div class="dNuestrosProductos">
+<div id="mobiliario" class="dNuestrosProductos">
     <div class="dNuestros">
-        <h1 class="hNuestros">Nuestros Productos</h1>
+        <h1 class="hNuestros">Mobiliario</h1>
     </div>
 
     <div class="dProductosDestacados">
         <div class="dProductos">
-            <div class="dProducto" *ngFor="let producto of productos">
+            <div class="dProducto" *ngFor="let producto of productosCat1">
                 <a href="" class="aProducto">
-                    <img src="{{producto.imgUrl}}" alt="">
+                    <img src="{{producto.syp_url}}">
                     <div class="dNombProd">
-                        <h2 class="hNombreProd">{{producto.nombre}}</h2>
+                        <h2 class="hNombreProd">{{producto.syp_nombre}}</h2>
                     </div>
                 </a>
             </div>
         </div>
     </div>
+</div>
+
+<div id="equipamiento" class="dNuestrosProductos">
+    <div class="dNuestros">
+        <h1 class="hNuestros">Equipamiento</h1>
+    </div>
+
+    <div class="dProductosDestacados">
+        <div class="dProductos">
+            <div class="dProducto" *ngFor="let producto of productosCat2">
+                <a href="" class="aProducto">
+                    <img src="{{producto.syp_url}}" alt="">
+                    <div class="dNombProd">
+                        <h2 class="hNombreProd">{{producto.syp_nombre}}</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ambientacion" class="dNuestrosProductos">
+    <div class="dNuestros">
+        <h1 class="hNuestros">Ambientacion</h1>
+    </div>
+
+    <div class="dProductosDestacados">
+        <div class="dProductos">
+            <div class="dProducto" *ngFor="let producto of productosCat3">
+                <a href="" class="aProducto">
+                    <img src="{{producto.syp_url}}" alt="">
+                    <div class="dNombProd">
+                        <h2 class="hNombreProd">{{producto.syp_nombre}}</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="final" >
+
 </div>

@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
-interface Productos {
-  categoria: string,
-  nombre: string,
-  material: string,
-  color: string,
-  medida: string,
-  imgUrl: string
+type Producto = {
+    id: number,
+    syp_nombre: string,
+    syp_url: string,
+    syp_descripcion: null,
+    syp_categoriaId: number
 }
 
 @Component({
@@ -14,38 +14,23 @@ interface Productos {
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.css']
 })
-export class DashboardPageComponent {
+export class DashboardPageComponent implements OnInit {
 
-  productos: Productos[] = [];
+    productosCat1: Producto[] = [];
+    productosCat2: Producto[] = [];
+    productosCat3: Producto[] = [];
 
-  constructor() {
-    this.productos = [
-        {
-            categoria: "sillas",
-            nombre: "SILLON",
-            material: "madera",
-            color: "marron",
-            medida: "12x12x12",
-            imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692196212/Productos/Sillones/Sillon1.svg"
-        },
-        {
-          categoria: "sillas",
-            nombre: "SILLA",
-            material: "madera",
-            color: "marron",
-            medida: "12x12x12",
-            imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692194932/Productos/Sillas/Silla3.svg"
-        },
-        {
-            categoria: "sillas",
-            nombre: "MESA",
-            material: "madera",
-            color: "marron",
-            medida: "12x12x12",
-            imgUrl: "https://res.cloudinary.com/dgkyrag0b/image/upload/v1692195722/Productos/Mesas/Mesa1.svg"
-        },
+    constructor( private http: HttpClient ) {
+        
+    }
+    ngOnInit(): void {
+        this.http.get<Producto[]>('https://code-pixel-back.onrender.com/syp').subscribe((productoList: Producto[]) => {
+            this.productosCat1 = productoList.filter( producto => producto.syp_categoriaId === 1 )
+            this.productosCat2 = productoList.filter( producto => producto.syp_categoriaId === 2 )
+            this.productosCat3 = productoList.filter( producto => producto.syp_categoriaId === 3 )
+        });
+    }
 
-    ]
-  }
+    
 
 }
