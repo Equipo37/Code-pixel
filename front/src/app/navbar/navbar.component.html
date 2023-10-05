@@ -64,10 +64,10 @@
           <p class="pMiCuenta">Mi Cuenta</p>
         </a>
       </ng-template>
-    </div>
-    <div (click)="openCart()">
-      <div class="cart-notification">{{cart?.length || 0}}</div>
-      <mat-icon class="cart">shopping_cart</mat-icon>
+      <div class="shoppingCart" (click)="openCart()">
+        <div class="cart-notification">{{cart?.length || 0}}</div>
+        <mat-icon class="cart">shopping_cart</mat-icon>
+      </div>
     </div>
   </div>
 </div>
