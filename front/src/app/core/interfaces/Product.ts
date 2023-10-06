@@ -4,4 +4,5 @@ export interface  Product  {
     categoriaId: number,
     url: string,
     precio: number,
+    descripcion: string
   }
