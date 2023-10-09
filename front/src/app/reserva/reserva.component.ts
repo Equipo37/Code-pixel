@@ -25,8 +25,8 @@ export class ReservaComponent implements OnInit {
     eve_id1: 0,
     res_envio: false,
     syp_id1: [],
-    res_monto: 0
-  }
+    res_monto: 0,
+  };
 
   evento: Event = {
     id: 0,
@@ -47,7 +47,7 @@ export class ReservaComponent implements OnInit {
     token: '',
   };
 
-  cart: any
+  cart: any;
 
   productos: any = [];
 
@@ -60,7 +60,7 @@ export class ReservaComponent implements OnInit {
           this.reserva.eve_id1 = eventData.id;
           console.log(this.reserva);
           this.BackendService.postReserva(
-            {...this.reserva},
+            { ...this.reserva },
             this.user.token
           ).subscribe((res) => {
             console.log(res);
@@ -90,16 +90,16 @@ export class ReservaComponent implements OnInit {
       const dias = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));
       if (dias > 0) {
         if (this.cart.length > 0) {
-          this.reserva.res_monto = this.cart.reduce(
-            (acc: number, el: any ) => {
-              return acc + el.precio * dias;
-            },
-            0
-          );
+          this.reserva.res_monto = this.cart.reduce((acc: number, el: any) => {
+            return acc + el.precio * dias;
+          }, 0);
         }
       }
     } else {
       console.error('Fechas no válidas');
+    }
+    if (this.reserva.res_envio == true) {
+      this.reserva.res_monto += 300;
     }
   }
 
@@ -119,14 +119,14 @@ export class ReservaComponent implements OnInit {
     });
   }
 
-  idCart = []
+  idCart = [];
 
   ngOnInit(): void {
-    this.cart = this.cartService.getCartData()
-    this.idCart = this.cart.map((prod: { id: any; }) => {
-      return prod.id
-    })
-    this.reserva.syp_id1 = this.idCart
+    this.cart = this.cartService.getCartData();
+    this.idCart = this.cart.map((prod: { id: any }) => {
+      return prod.id;
+    });
+    this.reserva.syp_id1 = this.idCart;
     const userData = this.userService.getUserData();
     if (userData?.dni) {
       this.user = userData;

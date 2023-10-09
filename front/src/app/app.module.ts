@@ -24,10 +24,11 @@ import {  MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReservationsComponent } from './profile-page/reservations/reservations.component';
 import { CartComponent } from './cart/cart.component';
 import { MatIconModule } from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent, EditProfileComponent, ReservaComponent, ReservationsComponent, CartComponent],
-  imports: [BrowserModule, MatIconModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MatSlideToggleModule, MatCardModule, MatButtonModule, MatMenuModule, MatSnackBarModule],
+  imports: [BrowserModule, MatIconModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MatSlideToggleModule, MatCardModule, MatButtonModule, MatMenuModule, MatSnackBarModule, MatTableModule],
   providers: [],
   bootstrap: [AppComponent],
 })

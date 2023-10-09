@@ -39,7 +39,8 @@ export class ReservationsComponent implements OnInit {
     nombre: '',
     categoriaId: 0,
     url: '',
-    precio: 0
+    precio: 0,
+    descripcion: ""
   }
   reservas: any = [];
 

@@ -19,7 +19,8 @@ export class DetailPageComponent implements OnInit {
     nombre: '',
     categoriaId: 0,
     url: '',
-    precio: 0
+    precio: 0,
+    descripcion: ""
   }
 
   showReservation: Boolean = false;
@@ -45,7 +46,7 @@ export class DetailPageComponent implements OnInit {
         this.producto.url = data.syp_url
         this.producto.id = data.id
         this.producto.precio = data.syp_precio
-        
+        this.producto.descripcion = data.syp_descripcion
       });
     });
   }

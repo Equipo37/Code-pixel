@@ -29,9 +29,9 @@
               <ul class="menu-vertical">
                   <li [routerLink]="'/products/category/0'" >
                       <a>Stand Eventos</a></li>
-                  <li><a (click)="scrollToElement('mobiliario')" >Mobiliario</a></li>
-                  <li><a (click)="scrollToElement('equipamiento')" >Equipamiento</a></li>
-                  <li><a (click)="scrollToElement('ambientacion')" >Ambientación</a></li>
+                  <li><a [routerLink]="'/products/category/1'" >Mobiliario</a></li>
+                  <li><a  [routerLink]="'/products/category/2'" >Equipamiento</a></li>
+                  <li><a  [routerLink]="'/products/category/3'" >Ambientación</a></li>
                   <li [routerLink]="'/products/category/4'" >
                       <a>Servicio Pre y Post Venta</a></li>
                   <a href=""></a>
@@ -44,7 +44,7 @@
       <a [routerLink]="">
         <h2>CONOCENOS</h2>
       </a>
-      <ng-container *ngIf="user.nombre">
+      <ng-container *ngIf="user?.nombre">
         <a [routerLink]="'/user/profile'">
           <h2>PERFIL</h2>
         </a>
@@ -52,7 +52,8 @@
     </div>
   
     <div class="dMiCuenta">
-      <!-- <ng-container *ngIf="user.nombre; else loginLink">
+
+      <ng-container *ngIf="user?.nombre; else loginLink">
         <a [routerLink]="'/logout'" class="aMiCuenta">
           <img src="../../../../assets/img/miCuenta.svg" class="iMicuenta" />
           <p class="pMiCuenta">Salir</p>
