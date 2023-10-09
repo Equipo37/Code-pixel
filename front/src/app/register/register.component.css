@@ -115,3 +115,10 @@ h2 {
     margin: 1rem;
   }
 }
+
+.error {
+  color: white;
+  width: 320px;
+  margin: 0px;
+  font-size: 20px;
+}

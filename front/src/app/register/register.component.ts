@@ -9,6 +9,7 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  error: string='';
   nombres: string = '';
   apellidos: string = '';
   dni: string = '';
@@ -32,6 +33,17 @@ export class RegisterComponent {
   }
 
   onSubmit() {
+    if (!this.nombres || 
+      !this.apellidos || 
+      !this.dni || 
+      !this.email || 
+      !this.celular || 
+      !this.empresa || 
+      !this.password || 
+      !this.confirmPassword) {
+      this.error = "Por favor, completar todos los datos requeridos...";
+      return;
+    }
     if (this.password !== this.confirmPassword) {
       console.log('Las contraseñas no coinciden');
       return;
