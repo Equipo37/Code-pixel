@@ -10,7 +10,7 @@
     <div class="dProductosDestacados">
         <div class="dProductos">
             <div class="dProducto" *ngFor="let producto of productosCat1">
-                <a href="" class="aProducto">
+                <a [href]="'products/' + producto.id" class="aProducto">
                     <img src="{{producto.syp_url}}">
                     <div class="dNombProd">
                         <h2 class="hNombreProd">{{producto.syp_nombre}}</h2>
@@ -30,7 +30,7 @@
     <div class="dProductosDestacados">
         <div class="dProductos">
             <div class="dProducto" *ngFor="let producto of productosCat2">
-                <a href="" class="aProducto">
+                <a [href]="'products/' + producto.id" class="aProducto">
                     <img src="{{producto.syp_url}}" alt="">
                     <div class="dNombProd">
                         <h2 class="hNombreProd">{{producto.syp_nombre}}</h2>
@@ -50,7 +50,7 @@
     <div class="dProductosDestacados">
         <div class="dProductos">
             <div class="dProducto" *ngFor="let producto of productosCat3">
-                <a href="" class="aProducto">
+                <a [href]="'products/' + producto.id" class="aProducto">
                     <img src="{{producto.syp_url}}" alt="">
                     <div class="dNombProd">
                         <h2 class="hNombreProd">{{producto.syp_nombre}}</h2>
