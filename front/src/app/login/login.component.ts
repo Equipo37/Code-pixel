@@ -35,6 +35,10 @@ export class LoginComponent {
   ) {}
 
   async onSubmit() {
+    if (!this.username || !this.password) {
+      this.error = "Por favor, ingresa un nombre de usuario y una contraseña.";
+      return;
+    }
     try {
       const data: any = await this.http
         .post('https://code-pixel-back.onrender.com/clientes/login', {
@@ -56,7 +60,7 @@ export class LoginComponent {
         this.userService.setUserData(this.cliente);
         this.router.navigate(['/dashboard']);
       } else {
-        this.error = 'Email y/o contraseña inválidos';
+        this.error = 'Usuario y/o contraseña inválidos';
         console.log('Inicio de sesión fallido');
       }
     } catch (error) {
