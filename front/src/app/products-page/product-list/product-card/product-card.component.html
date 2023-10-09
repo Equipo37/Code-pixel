@@ -1,7 +1,6 @@
 <mat-card class="example-card">
   <mat-card-header class="product-header">
     <mat-card-title>{{ product.syp_nombre }}</mat-card-title>
-    <mat-card-subtitle>{{ product.categoriaId }}</mat-card-subtitle>
   </mat-card-header>
   <img
     mat-card-image
@@ -9,9 +8,7 @@
     alt="{{ product.syp_nombre }}"
     class="product-img"
   />
-  <mat-card-content>
-    <p>Descripcion</p>
-  </mat-card-content>
+
   <mat-card-actions>
     <button mat-stroked-button (click)="getProductById(product.id)">Obtener</button>
   </mat-card-actions>

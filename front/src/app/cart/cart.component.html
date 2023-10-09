@@ -1,20 +1,37 @@
 <div class="cart-container">
-  <div *ngIf="cart.length > 0" class="cart-container">
-    <div class="" *ngFor="let producto of cart">
-      <mat-card class="example-card">
-        <mat-card-header class="product-header">
-          <mat-card-title>{{ producto?.nombre }}</mat-card-title>
-          <mat-card-subtitle>
-            categoría: {{ producto?.categoriaId }}</mat-card-subtitle
-          >
-        </mat-card-header>
+  <table mat-table [dataSource]="cart" class="mat-elevation-z8 w-100">
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let producto">{{ producto?.nombre }}</td>
+    </ng-container>
 
-        <mat-card-actions>
-          <button mat-stroked-button (click)="removeItem(producto.id)">Quitar</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef>Precio/día</th>
+      <td mat-cell *matCellDef="let producto">{{ producto?.precio }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let producto">{{ producto?.descripcion }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="borrar">
+      <th mat-header-cell *matHeaderCellDef >Borrar</th>
+      <td mat-cell *matCellDef="let producto" (click)="removeItem(producto.id)" class="erase">Si</td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div class="button-container">
+    <button mat-raised-button (click)="clearData()">Borrar Todos</button>
+    <button
+      *ngIf="cart.length > 0"
+      mat-raised-button
+      (click)="confirmReservation()"
+    >
+      Confirmar Reserva
+    </button>
   </div>
-  <button mat-stroked-button (click)="clearData()">Borrar Todos</button>
-  <button *ngIf="cart.length > 0" mat-stroked-button (click)="confirmReservation()">Confirmar Reserva</button>
 </div>
