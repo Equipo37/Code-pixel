@@ -7,7 +7,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <p><b>Monto: </b> {{reserva?.reserva?.res_monto}}</p>
+        <p><b>Monto: </b> ${{reserva?.reserva?.res_monto}}</p>
         <p><b>Incluye envío: </b> {{reserva?.reserva?.res_envio? "Sí" : "No"}}</p>
         <p><b>Lugar del evento: </b> {{reserva?.evento?.eve_lugar}}</p>
         <p><b>Fecha de inicio:</b> {{reserva?.evento?.eve_fechainicio | date: 'yyyy-MM-dd'}}</p>
