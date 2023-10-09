@@ -1,19 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../core/services/user.service';
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
-  styleUrls: ['./profile-page.component.css']
+  styleUrls: ['./profile-page.component.css'],
 })
-export class ProfilePageComponent implements OnInit {
+export class ProfilePageComponent {
+  user = {
+    dni: '',
+    personahumana: false,
+    nombre: '',
+    email: '',
+    celular: '',
+    empresa: '',
+    password: '',
+    admin: false,
+    token: '',
+    avatar: '',
+  };
+  imageUrl = this.user.avatar;
 
-  user: any
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.user = this.userService.getUserData();
-    console.log(this.user)
+    const userData = this.userService.getUserData();
+    if (userData?.nombre) {
+      this.user = userData;
+    }
+  }
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.readAndStoreImage(file);
+    }
   }
 
+  readAndStoreImage(file: File): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const imageBase64 = reader.result as string;
+      this.imageUrl = imageBase64;
+      this.user.avatar = this.imageUrl
+      this.userService.setUserData(this.user);
+    };
+    reader.readAsDataURL(file);
+  }
 }
-

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Client } from 'src/app/core/interfaces/Client';
 import { UserService } from 'src/app/core/services/user.service';
 import { HttpHeaders } from '@angular/common/http';
+import { BackendService } from 'src/app/core/services/backend.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -21,19 +22,18 @@ export class EditProfileComponent implements OnInit {
     password: '',
     admin: false,
     token: '',
+    avatar: ''
   };
   constructor(
     private http: HttpClient,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private BackendService: BackendService
   ) {}
 
+
   onSubmit() {
-    const URL = `https://code-pixel-back.onrender.com/clientes/${this.user.dni}`;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.user.token}`
-    });
-    this.http.put(URL, this.user, { headers, responseType: 'text' }).subscribe(
+    this.BackendService.putCliente(this.user).subscribe(
       (response) => {
         try {
           const responseData = JSON.parse(response);

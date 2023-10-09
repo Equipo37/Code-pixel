@@ -7,5 +7,6 @@ export interface Client {
     empresa: string,
     password: string,
     admin: boolean,
-    token: string
+    token: string,
+    avatar: string
   }
