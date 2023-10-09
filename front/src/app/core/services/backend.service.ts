@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Client } from '../interfaces/Client';
 import { Event } from '../interfaces/Event';
 import { Product } from '../interfaces/Product';
 import { Reservation } from '../interfaces/Reservation';
@@ -41,6 +42,12 @@ export class BackendService {
     });
     const url=`https://code-pixel-back.onrender.com/reservas/cliente/${dni}`;
     return this.http.get(url, {headers})
+  }
+
+  putCliente(user: Client): Observable<any>{
+    const headers = new HttpHeaders({'Authorization': `Bearer: ${user.token}`})
+    const url=`https://code-pixel-back.onrender.com/clientes/${user.dni}`
+    return this.http.put(url,{headers})
   }
 
 }
