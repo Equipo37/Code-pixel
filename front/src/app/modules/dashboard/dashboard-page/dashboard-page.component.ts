@@ -25,9 +25,9 @@ export class DashboardPageComponent implements OnInit {
     }
     ngOnInit(): void {
         this.http.get<Producto[]>('https://code-pixel-back.onrender.com/syp').subscribe((productoList: Producto[]) => {
-            this.productosCat1 = productoList.filter( producto => producto.syp_categoriaId === 1 )
-            this.productosCat2 = productoList.filter( producto => producto.syp_categoriaId === 2 )
-            this.productosCat3 = productoList.filter( producto => producto.syp_categoriaId === 3 )
+            this.productosCat1 = productoList.filter( producto => producto.syp_categoriaId === 1 ).slice(0,3)
+            this.productosCat2 = productoList.filter( producto => producto.syp_categoriaId === 2 ).slice(0,3)
+            this.productosCat3 = productoList.filter( producto => producto.syp_categoriaId === 3 ).slice(0,3)
         });
     }
 

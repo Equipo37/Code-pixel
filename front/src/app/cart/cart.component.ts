@@ -14,7 +14,7 @@ export class CartComponent implements OnInit, OnDestroy {
   cart: any = []
   private cartSubscription: Subscription = new Subscription;
   constructor(private cartService: CartService, private router: Router) { }
-
+  displayedColumns: string[] = ['nombre', 'precio', 'descripcion', 'borrar'];
   removeItem = (id: any) => {
     this.cartService.removeCartData(id)
   }
@@ -27,6 +27,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.router.navigate(['/cart/reservation'])
   }
 
+
   ngOnInit(): void {
     this.cartSubscription = this.cartService.getCartDataObservable().subscribe((cartData: any) => {
       if (cartData && cartData.length > 0) {
@@ -34,6 +35,8 @@ export class CartComponent implements OnInit, OnDestroy {
       } else {
         this.cart = [];
       }
+      console.log(this.cart)
+
     });
   }
 
