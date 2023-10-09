@@ -57,7 +57,7 @@
     }
     
     .login-form button:hover {
-        background-color: rgba(0, 86, 179, 1);
+        background-color: rgb(49, 102, 158);
     }
 
 }
