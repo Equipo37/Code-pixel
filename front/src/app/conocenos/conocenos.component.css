@@ -1,0 +1,13 @@
+.conocenos {
+    display: flex;
+    justify-content: center;
+    background-color: beige;
+    height: 100vh;
+    .pConocenos {
+        margin-top: 350px;
+        font-size: 40px;
+        text-align: center;
+        width: 810px;
+        color: rgb(125, 105, 35);
+    }
+}

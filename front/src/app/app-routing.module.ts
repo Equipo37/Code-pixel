@@ -10,6 +10,7 @@ import { EditProfileComponent } from './profile-page/edit-profile/edit-profile.c
 import { ReservaComponent } from './reserva/reserva.component';
 import { ReservationsComponent } from './profile-page/reservations/reservations.component';
 import { CartComponent } from './cart/cart.component';
+import { ConocenosComponent } from './conocenos/conocenos.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   }, {
     path: 'user/profile/reservations',
     component: ReservationsComponent
+  },
+  {
+    path: 'conocenos',
+    component: ConocenosComponent
   },
   {
     path: '**',
