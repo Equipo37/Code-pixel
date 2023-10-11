@@ -17,7 +17,6 @@ export class ProductCardComponent implements OnInit {
   }
 
   getProductById = (id: any) => {
-    console.log(id)
     this.router.navigate(['/products', id]);
   }
 
