@@ -1,3 +1,20 @@
 <div class="products-container">
-    <app-product-list [products]="productos"></app-product-list>
+  <div class="menu-container">
+    <button mat-raised-button [matMenuTriggerFor]="menu" class="button-ordenar">Ordenar:</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [value]="'mayor-menor'" (click)="seleccionarOrden('mayor-menor')">Por precio (mayor a menor)</button>
+      <button mat-menu-item [value]="'menor-mayor'" (click)="seleccionarOrden('menor-mayor')">Por precio (menor a mayor)</button>
+      <button mat-menu-item [value]="'alfabeticamente'" (click)="seleccionarOrden('alfabeticamente')">Alfabéticamente</button>
+    </mat-menu>
+    <mat-form-field class="example-full-width">
+        <mat-label>Búsqueda</mat-label>
+        <input matInput placeholder="Escribe aquí" value="" [(ngModel)]="searchTerm" (ngModelChange)="busqueda($event)">
+      </mat-form-field>
+  </div>
+  <div *ngIf="productosFiltrados.length!=0; else elseBlock">
+    <app-product-list [products]="productosFiltrados"></app-product-list>
+  </div>
+  <ng-template #elseBlock>
+    <h1>No hay productos</h1>
+  </ng-template>
 </div>
