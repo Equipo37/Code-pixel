@@ -25,9 +25,10 @@ import { ReservationsComponent } from './profile-page/reservations/reservations.
 import { CartComponent } from './cart/cart.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
+import { ConocenosComponent } from './conocenos/conocenos.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent, EditProfileComponent, ReservaComponent, ReservationsComponent, CartComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent, EditProfileComponent, ReservaComponent, ReservationsComponent, CartComponent, ConocenosComponent],
   imports: [BrowserModule, MatIconModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MatSlideToggleModule, MatCardModule, MatButtonModule, MatMenuModule, MatSnackBarModule, MatTableModule],
   providers: [],
   bootstrap: [AppComponent],
