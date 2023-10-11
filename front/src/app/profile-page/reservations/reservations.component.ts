@@ -22,7 +22,8 @@ export class ReservationsComponent implements OnInit {
     empresa: '',
     password: '',
     admin: false,
-    token: ''
+    token: '',
+    avatar: ''
   };
 
   reserva: Reservation = {

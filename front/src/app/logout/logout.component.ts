@@ -20,6 +20,7 @@ export class LogoutComponent implements OnInit {
     admin: false,
     password: "",
     token: "",
+    avatar: ""
   }
   constructor(private userService: UserService, private router: Router) { 
     setTimeout(() => {

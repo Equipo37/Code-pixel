@@ -24,6 +24,7 @@ export class LoginComponent {
     password: '',
     admin: false,
     token: '',
+    avatar: ''
   };
 
   constructor(
@@ -56,6 +57,7 @@ export class LoginComponent {
         this.cliente.password = data.cliente.cli_password;
         this.cliente.personahumana = data.cliente.cli_personahumana;
         this.cliente.token = data.accessToken;
+        this.cliente.avatar = data.cliente.cli_avatar;
         console.log('Inicio de sesión exitoso');
         this.userService.setUserData(this.cliente);
         this.router.navigate(['/dashboard']);

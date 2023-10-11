@@ -45,6 +45,7 @@ export class ReservaComponent implements OnInit {
     password: '',
     admin: false,
     token: '',
+    avatar: ''
   };
 
   cart: any;

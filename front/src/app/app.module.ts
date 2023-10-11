@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from '../app/register/register.component';
@@ -25,11 +25,11 @@ import { ReservationsComponent } from './profile-page/reservations/reservations.
 import { CartComponent } from './cart/cart.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
-import { ConocenosComponent } from './conocenos/conocenos.component';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent, EditProfileComponent, ReservaComponent, ReservationsComponent, CartComponent, ConocenosComponent],
-  imports: [BrowserModule, MatIconModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MatSlideToggleModule, MatCardModule, MatButtonModule, MatMenuModule, MatSnackBarModule, MatTableModule],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, DetailPageComponent, ProfilePageComponent, NavbarComponent, ProductsPageComponent, ProductListComponent, ProductCardComponent, LogoutComponent, EditProfileComponent, ReservaComponent, ReservationsComponent, CartComponent],
+  imports: [BrowserModule, MatIconModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MatSlideToggleModule, MatCardModule, MatButtonModule, MatMenuModule, MatSnackBarModule, MatTableModule, ReactiveFormsModule, MatInputModule],
   providers: [],
   bootstrap: [AppComponent],
 })
