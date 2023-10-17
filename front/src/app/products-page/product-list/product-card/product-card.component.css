@@ -30,7 +30,7 @@
     display: flex;
 }
 
-.rating input {
+.rating .estrella {
     position: relative;
     width: 40px;
     height: 40px;
@@ -39,9 +39,10 @@
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
+    font-style: normal;
 }
 
-.rating input::before {
+.rating .estrella::before {
     content: '\f005';
     position: absolute;
     font-family: fontAwesome;
@@ -50,10 +51,10 @@
     transition: .5s;
 }
 
-.rating input:hover ~ input::before,
-.rating input:hover::before,
-.rating input:checked ~ input::before,
-.rating input:checked::before{
+.rating .estrella:hover ~ .estrella::before,
+.rating .estrella:hover::before,
+.rating .estrella:checked ~ .estrella::before,
+.rating .estrella:checked::before{
     color: rgb(51, 165, 89);
 }
 
