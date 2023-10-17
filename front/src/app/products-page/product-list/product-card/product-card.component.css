@@ -30,7 +30,7 @@
     display: flex;
 }
 
-.rating .estrella {
+.rating input {
     position: relative;
     width: 40px;
     height: 40px;
@@ -39,10 +39,9 @@
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-    font-style: normal;
 }
 
-.rating .estrella::before {
+.rating input::before {
     content: '\f005';
     position: absolute;
     font-family: fontAwesome;
@@ -51,10 +50,10 @@
     transition: .5s;
 }
 
-.rating .estrella:hover ~ .estrella::before,
-.rating .estrella:hover::before,
-.rating .estrella:checked ~ .estrella::before,
-.rating .estrella:checked::before{
+.rating input:hover ~ input::before,
+.rating input:hover::before,
+.rating input:checked ~ input::before,
+.rating input:checked::before{
     color: rgb(51, 165, 89);
 }
 
